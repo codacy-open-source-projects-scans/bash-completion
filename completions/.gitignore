@@ -204,6 +204,7 @@
 /neomutt
 /_nerdctl
 /_nfpm
+/_ngrok
 /_nomad
 /_npm
 /_oc
@@ -323,6 +324,7 @@
 /_trivy
 /typeset
 /_upctl
+/_uv
 /_vacuum
 /vgcfgbackup
 /vgcfgrestore
