@@ -177,6 +177,10 @@ EXTRA_DIST = \
 	test_flake8.py \
 	test_fmt.py \
 	test_fold.py \
+	test_fprintd_delete.py \
+	test_fprintd_enroll.py \
+	test_fprintd_list.py \
+	test_fprintd_verify.py \
 	test_freebsd_update.py \
 	test_freeciv.py \
 	test_freeciv_server.py \
@@ -390,6 +394,7 @@ EXTRA_DIST = \
 	test_mr.py \
 	test_msgsnarf.py \
 	test_msynctool.py \
+	test_mtr.py \
 	test_mtx.py \
 	test_munin_node_configure.py \
 	test_munin_run.py \

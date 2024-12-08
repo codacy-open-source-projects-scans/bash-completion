@@ -1,3 +1,48 @@
+## [2.15.0](https://github.com/scop/bash-completion/compare/2.14.0...2.15.0) (2024-11-24)
+
+
+### Features
+
+* **_comp_abspath:** handle ".." ([d599dcf](https://github.com/scop/bash-completion/commit/d599dcfb7f33146baa143d99067c7e71d2992ee6))
+* **_comp_compgen_filedir,_comp_compgen_filedir_xspec:** don’t suggest . and .. ([#1230](https://github.com/scop/bash-completion/issues/1230)) ([0e7a0cf](https://github.com/scop/bash-completion/commit/0e7a0cf04bd9dbb190e977323ff16a24c6e172e7))
+* associate unzip and friends with *.vsix ([3c3ab17](https://github.com/scop/bash-completion/commit/3c3ab1781bf6061607d327a72a77ea93cf8aaedf))
+* **curl:** Complete "%", "-" for --trace[-ascii] ([b44b29c](https://github.com/scop/bash-completion/commit/b44b29ca1078043d2957d68e932e1a27c7e10283))
+* **curl:** Complete files for --json, --write-out ([62c0ecb](https://github.com/scop/bash-completion/commit/62c0ecbc6b8d018f4eb313961d888ab1cb18ecb5))
+* **curl:** Complete stdin "-" in file locations ([9c72cf8](https://github.com/scop/bash-completion/commit/9c72cf85c72f1cc0ad31ab1a5b12bbc78f06956e))
+* **fprintd-*:** new completions ([8aa4914](https://github.com/scop/bash-completion/commit/8aa4914a9ce9896d2461b2e09ba3f7649e001d99))
+* **iftop:** -G, -s, -L, and -o arg (non-)completions ([35293af](https://github.com/scop/bash-completion/commit/35293af0aaa2d37cee5549d3687004a045003578))
+* **ip:** complete ip ntable show ([432f95f](https://github.com/scop/bash-completion/commit/432f95f2ac29e83a705cfeb1b2de2a1eba45b5c2))
+* **java:** enable .java filename completion for java command ([959ce82](https://github.com/scop/bash-completion/commit/959ce82920bf20329a4586a325dd4579f8d5b822)), closes [#1196](https://github.com/scop/bash-completion/issues/1196)
+* **kata-runtime:** add 3rd party fallback completion loader ([5ff8055](https://github.com/scop/bash-completion/commit/5ff805532d45768ff2ddb55bb8ac0ea7869c023c))
+* **nerdctl:** add 3rd party fallback completion loader ([cf0591a](https://github.com/scop/bash-completion/commit/cf0591a01eec9350d294dae6b8f9c04d314dfcc9))
+* **ngrok:** add 3rd party fallback completion loader ([#1252](https://github.com/scop/bash-completion/issues/1252)) ([df48031](https://github.com/scop/bash-completion/commit/df48031e9fb75420ff569accc2152068ab37b8df))
+* **openssl:** Stop having subcommands hardcoded ([300b936](https://github.com/scop/bash-completion/commit/300b93682e3b27ed7fd7b1299a78dfc6ceaf6e80))
+* **python,pyvenv:** versioned 3.13 executable support ([3039122](https://github.com/scop/bash-completion/commit/3039122fecf228e96174d23dc7a5dafa6bff2002))
+* **set:** more featureful completion ([1cb3eae](https://github.com/scop/bash-completion/commit/1cb3eaee7166f81ff3f0b8e0b178ddfe0f5c230c))
+* **slabtop:** new completion ([64be5ea](https://github.com/scop/bash-completion/commit/64be5ea8d90d7d743976dd9c439c6aab0ab14ae5))
+* **sops:** add 3rd party fallback completion loader ([47af482](https://github.com/scop/bash-completion/commit/47af482d43ad91b6aba0bb736ec68e1ab47458b6))
+* **tar:** use long option compression options ([0518a21](https://github.com/scop/bash-completion/commit/0518a21b3419c53c2dc13753320a4b205ea5a493))
+* **todoist:** add 3rd party fallback completion loader ([75f5d26](https://github.com/scop/bash-completion/commit/75f5d2684b2c36b2ac066648d33d70a13936e942))
+* **uv:** add 3rd party fallback completion loader ([ba003af](https://github.com/scop/bash-completion/commit/ba003af9684da4c416058f54be338b45a7e9eed4))
+* **uvx:** add 3rd party fallback completion loader ([499ecab](https://github.com/scop/bash-completion/commit/499ecab89f90e5006f3137e3094ec1c6a1977164))
+* **wine:** complete with `*.bat` and `*.cmd` ([01b34cb](https://github.com/scop/bash-completion/commit/01b34cb855ebb672646fc27795096c46fdd2e9ad))
+* **xv:** associate with *.webp and *.pnm ([#1227](https://github.com/scop/bash-completion/issues/1227)) ([2dab633](https://github.com/scop/bash-completion/commit/2dab63379b90619f93873976944f4f9ad338dc0d))
+* **xxd:** add -n, -o, and -R arg (non-)completions ([8304d33](https://github.com/scop/bash-completion/commit/8304d3342a07e0f1a402ff0a6752e513c2a0541a))
+
+
+### Bug Fixes
+
+* **_comp_compgen:** use `compgen -V array_name` in `bash &gt;= 5.3` ([2b5f9fa](https://github.com/scop/bash-completion/commit/2b5f9fa8d557a4376f10cf69da07c11b9f5db0be))
+* **_comp_expand_glob:** set LC_COLLATE for the sorting order ([ce98f68](https://github.com/scop/bash-completion/commit/ce98f686c0aac19bc5b0938cbfa245a2f06d8b79))
+* **_comp_expand_glob:** work around GLOBSORT in Bash 5.3 ([0fda821](https://github.com/scop/bash-completion/commit/0fda8211079e32e6fea29dabb46fe1a55a80cccd))
+* **compatdir:** use _comp_expand_glob for the correct order ([51e680a](https://github.com/scop/bash-completion/commit/51e680a684c5e0e8eb8a485797aea68975901fef))
+* **curl:** Complete all and category for --help ([7eb2eb2](https://github.com/scop/bash-completion/commit/7eb2eb2ceabfc882a1407f34c9dadb8e194a4ec2))
+* **dpkg:** Add missing short option -R ([9891762](https://github.com/scop/bash-completion/commit/9891762cc88f13a05b300466a9d317f39d95f7dd))
+* **rsync,ssh:** do not overescape spaces in remote filenames ([#910](https://github.com/scop/bash-completion/issues/910)) ([e8dc253](https://github.com/scop/bash-completion/commit/e8dc253ddda79f83532551e45deeeab0c3afc5f4))
+* source files using absolute paths for absolute BASH_SOURCE ([e1a70c6](https://github.com/scop/bash-completion/commit/e1a70c66433788e2d9d08e89d16329bb2fb340b9))
+* **tar:** Complete added files with long opts ([c94bebb](https://github.com/scop/bash-completion/commit/c94bebbe919ce696d57466d7c9c9328d82be9fd8))
+* **update-alternatives:** fix the "--help" parsing ([07605cb](https://github.com/scop/bash-completion/commit/07605cb3e0a3aca8963401c8f7a8e7ee42dbc399))
+
 ## [2.14.0](https://github.com/scop/bash-completion/compare/2.13.0...2.14.0) (2024-05-09)
 
 
@@ -196,7 +241,7 @@
 * **dict:** nounset error when host/port not set ([57191e2](https://github.com/scop/bash-completion/commit/57191e2731eb307434c2f11813d7dea303458dce))
 * **dict:** protect splitting from custom IFS ([b31fe1e](https://github.com/scop/bash-completion/commit/b31fe1e3e1b3480d9dc6a469cae4e83ed204b382))
 * **dict:** work around bash-4.2 array nounset ([d76dd9e](https://github.com/scop/bash-completion/commit/d76dd9ea448b71e111763e8048df49dde797d85e))
-* **dict:** work around bash-4.3 ${v+"$@"} with custom IFS ([cc21298](https://github.com/scop/bash-completion/commit/cc212983a2b2523e5b62e9735c6dff5f011bb80a))
+* **dict:** work around bash-4.3 `${v+"$@"}` with custom IFS ([cc21298](https://github.com/scop/bash-completion/commit/cc212983a2b2523e5b62e9735c6dff5f011bb80a))
 * **dmypy:** protect against "localvar_inherit" ([768ce65](https://github.com/scop/bash-completion/commit/768ce656099879ba1b81de04b75db11679791c47))
 * **dpkg-source:** filter completions by `cur` ([dbcef6e](https://github.com/scop/bash-completion/commit/dbcef6e37313b00f00ca65397be6a061b1af3bb8))
 * **filedir:** work around bash-4.2 `compgen -f -- "''"` ([c8bb123](https://github.com/scop/bash-completion/commit/c8bb123abc0c148bfa078cf8bfe01bafc5cf50ff))
@@ -204,8 +249,8 @@
 * **gdb:** fix regression that fails to generate command names ([ca8e240](https://github.com/scop/bash-completion/commit/ca8e2405ae49c927f9c9d312aa0efdde3d231bf2))
 * **gdb:** remove duplicate candidates ([532fc05](https://github.com/scop/bash-completion/commit/532fc05a73b415369ce1987463d82d791ee72dc0))
 * **gdb:** use POSIX-compatible find expression ([73938cd](https://github.com/scop/bash-completion/commit/73938cd857c3a7fa884e24be7216d1c5b12d5a1c))
-* **gdb:** work around bash 4.4 ${v+"$@"} ([41236da](https://github.com/scop/bash-completion/commit/41236da411794133d08792df28207e2a77271c57))
-* **get_words:** work around bash-4.3 connected ${v+"$@"} ([81affbd](https://github.com/scop/bash-completion/commit/81affbd999a24f796f79fb5c1eec80e88b3a98d8))
+* **gdb:** work around bash 4.4 `${v+"$@"}` ([41236da](https://github.com/scop/bash-completion/commit/41236da411794133d08792df28207e2a77271c57))
+* **get_words:** work around bash-4.3 connected `${v+"$@"}` ([81affbd](https://github.com/scop/bash-completion/commit/81affbd999a24f796f79fb5c1eec80e88b3a98d8))
 * **getent:** check noargopts ([6143f25](https://github.com/scop/bash-completion/commit/6143f257f1593c319504c2627fe01b4c94e90a48))
 * **getent:** work around localvar_inherit ([a12f438](https://github.com/scop/bash-completion/commit/a12f438ebf93d7427d1b5df7056ace8ec67e890c))
 * **gzip,isort:** fix typo `_comp_com{gp =&gt; pg}en` ([462feb3](https://github.com/scop/bash-completion/commit/462feb34d3b49f70a2451cbf724d14e59bfd8e0a))
@@ -228,7 +273,7 @@
 * **make:** typo fix in a code comment ([e72cc82](https://github.com/scop/bash-completion/commit/e72cc826534a0ea9dc840546134c19962697c3a0))
 * **mdadm,update-alternatives:** fix leak variable ([14cd53b](https://github.com/scop/bash-completion/commit/14cd53bb38d0d0ef91bf82731e8946551f15023a))
 * **medusa:** filter completions by the current word `cur` ([f3ae706](https://github.com/scop/bash-completion/commit/f3ae706e114c4924416c50cca90473e6ce98ae20))
-* **mr:** avoid ${var/pat/$'...'} for compat42 in bash &gt;= 4.3 ([b5ae5fa](https://github.com/scop/bash-completion/commit/b5ae5fada8b788885b0fd65cca34b85672f08189))
+* **mr:** avoid `${var/pat/$'...'}` for compat42 in bash &gt;= 4.3 ([b5ae5fa](https://github.com/scop/bash-completion/commit/b5ae5fada8b788885b0fd65cca34b85672f08189))
 * **mr:** exactly match command names ([800b103](https://github.com/scop/bash-completion/commit/800b10372e383124856c37b505d5dc9232eb1e45))
 * **mutt:** avoid unexpected word splitting ([3183e67](https://github.com/scop/bash-completion/commit/3183e67c72fcf5ba3d713de59a5d6898a9a64952))
 * **mutt:** fix use of regex in the glob context ([63924e6](https://github.com/scop/bash-completion/commit/63924e67527e5fa7698ac0610c7fd90c7ba36ecf))

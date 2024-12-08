@@ -19,6 +19,7 @@
 /_ansible-vault
 /apropos
 /aptitude-curses
+/_aqua
 /_arduino-cli
 /arm-koji
 /asciidoc.py
@@ -58,6 +59,7 @@
 /conjure
 /_constellation
 /_consul
+/_cosign
 /cowthink
 /_crc
 /createdb
@@ -84,6 +86,8 @@
 /filebucket
 /firefox-esr
 /_flask
+/fprintd-list
+/fprintd-verify
 /freeciv-gtk2
 /freeciv-gtk3
 /freeciv-sdl
@@ -137,7 +141,7 @@
 /_incus
 /_infracost
 /inotifywatch
-/insmod.static
+/_insmod.static
 /iperf3
 /_istioctl
 /javac

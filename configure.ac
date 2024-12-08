@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([bash-completion], [2.14.0]) dnl x-release-please-version
+AC_INIT([bash-completion], [2.15.0]) dnl x-release-please-version
 dnl tar-pax for portable UTF-8 handling
 AM_INIT_AUTOMAKE([
     foreign dist-xz no-dist-gzip tar-pax -Wall -Wno-portability -Werror
@@ -14,23 +14,23 @@ fi
 
 AC_CANONICAL_HOST
 
-build_bsd=
-build_freebsd=
-build_solaris=
+install_bsd=
+install_freebsd=
+install_solaris=
 case ${host_os} in
     *bsd*)
-        build_bsd=yes
+        install_bsd=yes
         case ${host_os} in
             *freebsd*)
-                build_freebsd=yes ;;
+                install_freebsd=yes ;;
         esac ;;
     *solaris*)
-        build_solaris=yes ;;
+        install_solaris=yes ;;
 esac
 
-AM_CONDITIONAL([BSD], [test "${build_bsd}" = yes])
-AM_CONDITIONAL([FREEBSD], [test "${build_freebsd}" = yes])
-AM_CONDITIONAL([SOLARIS], [test "${build_solaris}" = yes])
+AM_CONDITIONAL([BSD], [test "${install_bsd}" = yes])
+AM_CONDITIONAL([FREEBSD], [test "${install_freebsd}" = yes])
+AM_CONDITIONAL([SOLARIS], [test "${install_solaris}" = yes])
 
 AC_CONFIG_FILES([
 Makefile

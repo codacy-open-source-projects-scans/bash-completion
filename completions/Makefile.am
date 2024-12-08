@@ -1,5 +1,4 @@
-bashcompdir = $(datadir)/$(PACKAGE)/completions
-bashcomp_DATA = 2to3 \
+cross_platform = 2to3 \
 		7z \
 		a2x \
 		abook \
@@ -120,6 +119,8 @@ bashcomp_DATA = 2to3 \
 		firefox \
 		flake8 \
 		_flamegraph \
+		fprintd-delete \
+		fprintd-enroll \
 		freeciv \
 		freeciv-server \
 		function \
@@ -179,7 +180,7 @@ bashcomp_DATA = 2to3 \
 		info \
 		inject \
 		inotifywait \
-		insmod \
+		_insmod \
 		installpkg \
 		interdiff \
 		invoke-rc.d \
@@ -266,8 +267,8 @@ bashcomp_DATA = 2to3 \
 		mktemp \
 		mmsitepass \
 		_mock \
-		modinfo \
-		modprobe \
+		_modinfo \
+		_modprobe \
 		_modules \
 		monodevelop \
 		_mount \
@@ -275,6 +276,7 @@ bashcomp_DATA = 2to3 \
 		mplayer \
 		mr \
 		msynctool \
+		_mtr \
 		mtx \
 		munindoc \
 		munin-node-configure \
@@ -373,7 +375,7 @@ bashcomp_DATA = 2to3 \
 		_rg \
 		ri \
 		rmlist \
-		rmmod \
+		_rmmod \
 		route \
 		rpcdebug \
 		rpm \
@@ -498,27 +500,37 @@ bashcomp_DATA = 2to3 \
 		zopfli \
 		zopflipng
 
+solaris_extra = pkgutil
 
-if SOLARIS
-bashcomp_DATA += pkgutil
-endif
+bsd_extra = pkg_delete
 
-if BSD
-bashcomp_DATA += pkg_delete
-endif
-
-if FREEBSD
-bashcomp_DATA += \
+freebsd_extra = \
 		freebsd-update \
 		kldload \
 		kldunload \
 		portinstall \
 		portsnap \
 		portupgrade
+
+# We include all the files in the tarball
+EXTRA_DIST = $(cross_platform) \
+	     $(solaris_extra) \
+	     $(bsd_extra) \
+	     $(freebsd_extra)
+
+bashcompdir = $(datadir)/$(PACKAGE)/completions
+bashcomp_DATA = $(cross_platform)
+# We add only the completions that are relevant for the current platform we're
+# installing on.
+if SOLARIS
+bashcomp_DATA += $(solaris_extra)
 endif
-
-
-EXTRA_DIST = $(bashcomp_DATA)
+if BSD
+bashcomp_DATA += $(bsd_extra)
+endif
+if FREEBSD
+bashcomp_DATA += $(freebsd_extra)
+endif
 
 CLEANFILES = \
 	7za \
@@ -548,6 +560,7 @@ CLEANFILES = \
 	_ansible-vault \
 	apropos \
 	aptitude-curses \
+	_aqua \
 	_arduino-cli \
 	arm-koji \
 	asciidoc.py \
@@ -592,6 +605,7 @@ CLEANFILES = \
 	conjure \
 	_constellation \
 	_consul \
+	_cosign \
 	cowthink \
 	_crc \
 	createdb \
@@ -618,6 +632,8 @@ CLEANFILES = \
 	filebucket \
 	firefox-esr \
 	_flask \
+	fprintd-list \
+	fprintd-verify \
 	freeciv-gtk2 \
 	freeciv-gtk3 \
 	freeciv-sdl \
@@ -683,7 +699,7 @@ CLEANFILES = \
 	_incus \
 	_infracost \
 	inotifywatch \
-	insmod.static \
+	_insmod.static \
 	iperf3 \
 	_istioctl \
 	javac \
@@ -784,6 +800,8 @@ CLEANFILES = \
 	ping4 \
 	ping6 \
 	_pip3 \
+	pkg_deinstall \
+	pkg_info \
 	pkgconf \
 	pkill \
 	plzip \
@@ -998,6 +1016,10 @@ symlinks: $(DATA)
 		firefox-esr iceweasel mozilla-firefox
 	$(ss) _flamegraph \
 		_watchexec
+	$(ss) fprintd-delete \
+		fprintd-list
+	$(ss) fprintd-enroll \
+		fprintd-verify
 	$(ss) freeciv \
 		civclient freeciv-gtk2 freeciv-gtk3 freeciv-sdl freeciv-xaw
 	$(ss) freeciv-server \
@@ -1018,12 +1040,14 @@ symlinks: $(DATA)
 		gkrellm2
 	$(ss) _golangci-lint \
 		_allero \
+		_aqua \
 		_arduino-cli \
 		_buf \
 		_chezmoi \
 		_cilium \
 		_cloudquery \
 		_constellation \
+		_cosign \
 		_crc \
 		_datree \
 		_dlv \
@@ -1099,8 +1123,8 @@ symlinks: $(DATA)
 		pinfo
 	$(ss) inotifywait \
 		inotifywatch
-	$(ss) insmod \
-		insmod.static
+	$(ss) _insmod \
+		_insmod.static
 	$(ss) iperf \
 		iperf3
 	$(ss) java \

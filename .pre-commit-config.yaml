@@ -1,5 +1,5 @@
-default_stages: [commit]
-minimum_pre_commit_version: 2.4.0
+default_stages: [pre-commit]
+minimum_pre_commit_version: 3.2.0 # for "default_stages" names
 
 repos:
 
@@ -9,7 +9,7 @@ repos:
       - id: gitlint
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.9.0-1
+    rev: v3.10.0-1
     hooks:
       - id: shfmt
         types: [text]
@@ -43,7 +43,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.3
+    rev: v0.8.0
     hooks:
       - id: ruff
         types: [text]
@@ -68,7 +68,7 @@ repos:
         exclude: ^completions/|^test/fixtures/pytest/
 
   - repo: https://github.com/perltidy/perltidy
-    rev: "20240202"
+    rev: "20240903"
     hooks:
       - id: perltidy
         types: [text]
@@ -83,7 +83,7 @@ repos:
         files: ^(helpers/perl|.+\.p[ml])$
 
   - repo: https://github.com/jackdewinter/pymarkdown
-    rev: v0.9.19
+    rev: v0.9.25
     hooks:
       - id: pymarkdown
         entry: pymarkdown
@@ -93,12 +93,12 @@ repos:
         exclude: ^CHANGELOG\.md$
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-case-conflict
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.26.0
+    rev: v1.27.3
     hooks:
       - id: typos
         exclude: ^(CHANGELOG\.md|test/(test-cmd-list\.txt|fixtures/.+))$
