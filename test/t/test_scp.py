@@ -33,7 +33,7 @@ class TestScp:
                     )
                 ),
                 # Local filenames
-                ["config", "known_hosts", "local_path/", r"spaced\ \ conf"],
+                ["config", "known_hosts", r"spaced\ \ conf"],
             )
         )
         assert completion == expected
@@ -53,7 +53,7 @@ class TestScp:
                     )
                 ),
                 # Local filenames
-                ["config", "known_hosts", "local_path/", r"spaced\ \ conf"],
+                ["config", "known_hosts", r"spaced\ \ conf"],
             )
         )
         assert completion == expected
@@ -132,6 +132,15 @@ class TestScp:
         assert completion == sorted(
             [r"abc\ def.txt", r"abc\\\ def.txt"]
         ) or completion == sorted([r"abc\\\ def.txt", r"abc\\\\\\\ def.txt"])
+
+    def test_remote_path_with_backslash_2(self, bash):
+        assert_bash_exec(
+            bash, r"ssh() { [[ $1 == abc ]]; printf '%s\n' 'abc OK'; }"
+        )
+        completion = assert_complete(bash, "scp remote_host:abc\\\\\\")
+        assert_bash_exec(bash, "unset -f ssh")
+
+        assert completion == "OK"
 
     def test_xfunc_remote_files(self, live_pwd, bash):
         def prefix_paths(prefix, paths):
@@ -247,8 +256,23 @@ class TestScp:
     def test_local_path_with_spaces_2(self, completion):
         assert completion == r"\ conf"
 
-    @pytest.mark.complete("scp backslash-a\\", cwd="scp/local_path")
-    def test_local_path_backslash(self, completion):
+    @pytest.fixture
+    def tmpdir_backslash_2(self, request, bash):
+        if sys.platform.startswith("win"):
+            pytest.skip("Filenames not allowed on Windows")
+
+        tmpdir = prepare_fixture_dir(
+            request,
+            files=["backslash-a b.txt", r"backslash-a\ b.txt"],
+            dirs=[],
+        )
+        return tmpdir
+
+    @pytest.mark.complete
+    def test_local_path_backslash(self, bash, tmpdir_backslash_2):
+        completion = assert_complete(
+            bash, "scp backslash-a\\", cwd=tmpdir_backslash_2
+        )
         assert completion == sorted(
             [r"backslash-a\ b.txt", r"backslash-a\\\ b.txt"]
         )
