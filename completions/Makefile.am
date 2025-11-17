@@ -559,6 +559,7 @@ CLEANFILES = \
 	aclocal-1.14 \
 	aclocal-1.15 \
 	aclocal-1.16 \
+	aclocal-1.17 \
 	_airflow \
 	_allero \
 	_alp \
@@ -593,6 +594,7 @@ CLEANFILES = \
 	automake-1.14 \
 	automake-1.15 \
 	automake-1.16 \
+	automake-1.17 \
 	autossh \
 	autoupdate \
 	avahi-browse-domains \
@@ -916,6 +918,7 @@ CLEANFILES = \
 	pm-suspend \
 	pm-suspend-hybrid \
 	pmake \
+	_pnpm \
 	_polygon-edge \
 	_popeye \
 	postalias \
@@ -941,6 +944,9 @@ CLEANFILES = \
 	py.test-2 \
 	py.test-3 \
 	pydoc3 \
+	pydoc3.13 \
+	pydoc3.14 \
+	pydoc3.15 \
 	pylint-2 \
 	pylint-3 \
 	pypy \
@@ -963,6 +969,8 @@ CLEANFILES = \
 	python3.11 \
 	python3.12 \
 	python3.13 \
+	python3.14 \
+	python3.15 \
 	pyvenv-3.4 \
 	pyvenv-3.5 \
 	pyvenv-3.6 \
@@ -973,6 +981,8 @@ CLEANFILES = \
 	pyvenv-3.11 \
 	pyvenv-3.12 \
 	pyvenv-3.13 \
+	pyvenv-3.14 \
+	pyvenv-3.15 \
 	qemu-kvm \
 	qemu-system-i386 \
 	qemu-system-x86_64 \
@@ -1028,6 +1038,8 @@ CLEANFILES = \
 	_starship \
 	_steampipe \
 	stream \
+	sudo-rs \
+	sudo.ws \
 	sudoedit \
 	_syft \
 	_talhelper \
@@ -1104,7 +1116,7 @@ symlinks: $(DATA)
 		7zzs
 	$(ss) aclocal \
 		aclocal-1.10 aclocal-1.11 aclocal-1.12 aclocal-1.13 \
-		aclocal-1.14 aclocal-1.15 aclocal-1.16
+		aclocal-1.14 aclocal-1.15 aclocal-1.16 aclocal-1.17
 	$(ss) ant \
 		phing
 	$(ss) aptitude \
@@ -1113,7 +1125,7 @@ symlinks: $(DATA)
 		asciidoc.py
 	$(ss) automake \
 		automake-1.10 automake-1.11 automake-1.12 automake-1.13 \
-		automake-1.14 automake-1.15 automake-1.16
+		automake-1.14 automake-1.15 automake-1.16 automake-1.17
 	$(ss) autoreconf \
 		autoheader
 	$(ss) autoscan \
@@ -1313,6 +1325,7 @@ symlinks: $(DATA)
 		_ory \
 		_pitchfork \
 		_pluto \
+		_pnpm \
 		_polygon-edge \
 		_popeye \
 		_pulumi \
@@ -1473,16 +1486,18 @@ endif
 	$(ss) pytest \
 		py.test py.test-2 py.test-3 pytest-2 pytest-3
 	$(ss) pydoc \
-		pydoc3
+		pydoc3 pydoc3.13 pydoc3.14 pydoc3.15
 	$(ss) pylint \
 		pylint-2 pylint-3
 	$(ss) python \
 		micropython pypy pypy3 pyston pyston3 python2 python2.7 \
 		python3 python3.3  python3.4 python3.5 python3.6 python3.7 \
-		python3.8 python3.9 python3.10 python3.11 python3.12 python3.13
+		python3.8 python3.9 python3.10 python3.11 python3.12 \
+		python3.13 python3.14 python3.15
 	$(ss) pyvenv \
 		pyvenv-3.4 pyvenv-3.5 pyvenv-3.6 pyvenv-3.7 pyvenv-3.8 \
-		pyvenv-3.9 pyvenv-3.10 pyvenv-3.11 pyvenv-3.12 pyvenv-3.13
+		pyvenv-3.9 pyvenv-3.10 pyvenv-3.11 pyvenv-3.12 pyvenv-3.13 \
+		pyvenv-3.14 pyvenv-3.15
 	$(ss) qdbus \
 		dcop
 	$(ss) qemu \
@@ -1509,7 +1524,7 @@ endif
 	$(ss) ssh \
 		autossh scp sftp sidedoor slogin
 	$(ss) sudo \
-		sudoedit
+		sudo-rs sudo.ws sudoedit
 	$(ss) tar \
 		bsdtar gtar star
 	$(ss) tracepath \

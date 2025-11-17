@@ -2,7 +2,7 @@
 /7zr
 /7zz
 /7zzs
-/aclocal-1.1[0123456]
+/aclocal-1.1[01234567]
 /_airflow
 /_allero
 /_alp
@@ -30,7 +30,7 @@
 /_atlas
 /_atmos
 /autoheader
-/automake-1.1[0123456]
+/automake-1.1[01234567]
 /autossh
 /autoupdate
 /avahi-browse-domains
@@ -329,6 +329,7 @@
 /pm-suspend
 /pm-suspend-hybrid
 /pmake
+/_pnpm
 /_polygon-edge
 /_popeye
 /postalias
@@ -353,6 +354,7 @@
 /py.test
 /py.test-[23]
 /pydoc3
+/pydoc3.1[345]
 /pylint-[23]
 /pypy
 /pypy3
@@ -419,6 +421,8 @@
 /_starship
 /_steampipe
 /stream
+/sudo-rs
+/sudo.ws
 /sudoedit
 /_syft
 /_talhelper
