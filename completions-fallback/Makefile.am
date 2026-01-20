@@ -164,6 +164,7 @@ CLEANFILES = \
 	goreleaser.bash \
 	grype.bash \
 	gup.bash \
+	hd.bash \
 	helm.bash \
 	helmfile.bash \
 	hostctl.bash \
@@ -225,6 +226,7 @@ CLEANFILES = \
 	mockery.bash \
 	moldy.bash \
 	multi-gitter.bash \
+	ncal.bash \
 	nerdctl.bash \
 	nfpm.bash \
 	ngrok.bash \
@@ -253,6 +255,7 @@ CLEANFILES = \
 	rclone.bash \
 	regal.bash \
 	regctl.bash \
+	release-plz.bash \
 	rustic.bash \
 	sentry-cli.bash \
 	sinker.bash \
@@ -302,6 +305,8 @@ CLEANFILES = \
 	zola.bash
 
 symlinks: $(DATA)
+	$(ss) bombadil \
+		release-plz
 	$(ss) cal \
 		ncal
 	$(ss) flamegraph \
