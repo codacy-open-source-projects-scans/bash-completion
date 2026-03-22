@@ -4,7 +4,7 @@ minimum_pre_commit_version: 3.2.0 # for "default_stages" names
 repos:
 
   - repo: https://github.com/crate-ci/committed
-    rev: v1.1.8
+    rev: v1.1.11
     hooks:
       - id: committed
         args:
@@ -39,7 +39,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.14
+    rev: v0.15.6
     hooks:
       - id: ruff-check
         types: [text]
@@ -88,13 +88,13 @@ repos:
       - id: check-illegal-windows-names
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.38.1
+    rev: v1.44.0
     hooks:
       - id: typos
         exclude: ^(CHANGELOG\.md|test/(test-cmd-list\.txt|fixtures/.+))$
 
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.16.1
+    rev: v1.23.1
     hooks:
     - id: zizmor
       files: '^.github/.*$'
