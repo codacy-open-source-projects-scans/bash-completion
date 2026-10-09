@@ -1,4 +1,4 @@
-# bash completion for sha256(1) and friends                -*- shell-script -*-
+# bash completion for sha256(1) and friends
 
 _comp_cmd_sha256sum()
 {
@@ -20,7 +20,7 @@ _comp_cmd_sha256sum()
 
     local sumtype=${1##*/}
     sumtype=${sumtype%sum}
-    local sumglob="@(*.$sumtype|@(check|${sumtype})sums?(.txt))"
+    local sumglob="@(*.$sumtype|@(@(check|${sumtype})sums|${sumtype^^}SUMS)?(.txt))"
     compopt -o filenames
 
     local opt
@@ -35,5 +35,3 @@ _comp_cmd_sha256sum()
 } &&
     complete -F _comp_cmd_sha256sum b2sum cksum md5sum \
         sha{,1,224,256,384,512}sum
-
-# ex: filetype=sh

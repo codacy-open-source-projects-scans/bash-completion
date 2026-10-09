@@ -1,4 +1,4 @@
-# curl(1) completion                                       -*- shell-script -*-
+# curl(1) completion
 
 _comp_cmd_curl()
 {
@@ -10,32 +10,33 @@ _comp_cmd_curl()
     case $prev in
         --abstract-unix-socket | --alt-svc | --config | --cookie | \
             --cookie-jar | --dump-header | --egd-file | --etag-compare | \
-            --etag-save | --hsts | --key | --libcurl | --netrc-file | \
-            --output | --proxy-key | --random-file | --ssl-sessions | \
-            --unix-socket | --upload-file | -${noargopts}[KbcDoT])
+            --etag-save | --hsts | --key | --knownhosts | --libcurl | \
+            --netrc-file | --output | --proxy-key | --random-file | \
+            --ssl-sessions | --unix-socket | --upload-file | \
+            -${noargopts}[KbcDoT])
             _comp_compgen_filedir
             return
             ;;
         --aws-sigv4 | --ciphers | --connect-timeout | --connect-to | \
-            --continue-at | --curves | --data-raw | --doh-url | \
-            --expect100-timeout | --form | --form-string | --ftp-account | \
-            --ftp-alternative-to-user | --haproxy-clientip | \
+            --continue-at | --create-file-mode | --curves | --data-raw | \
+            --doh-url | --expect100-timeout | --form | --form-string | \
+            --ftp-account | --ftp-alternative-to-user | --haproxy-clientip | \
             --happy-eyeballs-timeout-ms | --hostpubmd5 | --hostpubsha256 | \
-            --ipfs-gateway | --keepalive-cnt | --keepalive-time | \
+            --ip-tos | --ipfs-gateway | --keepalive-cnt | --keepalive-time | \
             --limit-rate | --local-port | --login-options | --mail-auth | \
             --mail-from | --mail-rcpt | --max-filesize | --max-redirs | \
-            --max-time | --oauth2-bearer | --parallel-max | --pass | \
-            --proto | --proto-redir | --proxy-ciphers | --proxy-pass | \
-            --proxy-service-name | --proxy-tls13-ciphers | \
-            --proxy-tlspassword | --proxy-tlsuser | --proxy-user | \
-            --proxy1.0 | --quote | --range | --rate | --referer | \
-            --request-target | --resolve | --retry | --retry-delay | \
-            --retry-max-time | --sasl-authzid | --service-name | --sigalgs | \
-            --socks5-gssapi-service | --speed-limit | --speed-time | \
-            --telnet-option | --tftp-blksize | --time-cond | \
-            --tls13-ciphers | --trace-config | --tlspassword | --tlsuser | \
-            --upload-flags | --url | --url-query | --user | --user-agent | \
-            --variable | --version | --vlan-priority | \
+            --max-time | --oauth2-bearer | --parallel-max | \
+            --parallel-max-host | --pass | --proto | --proto-redir | \
+            --proxy-ciphers | --proxy-pass | --proxy-service-name | \
+            --proxy-tls13-ciphers | --proxy-tlspassword | --proxy-tlsuser | \
+            --proxy-user | --proxy1.0 | --quote | --range | --rate | \
+            --referer | --request-target | --resolve | --retry | \
+            --retry-delay | --retry-max-time | --sasl-authzid | \
+            --service-name | --sigalgs | --socks5-gssapi-service | \
+            --speed-limit | --speed-time | --telnet-option | --tftp-blksize | \
+            --time-cond | --tls13-ciphers | --trace-config | --tlspassword | \
+            --tlsuser | --upload-flags | --url | --url-query | --user | \
+            --user-agent | --variable | --version | --vlan-priority | \
             -${noargopts}[CFmQreYytzuAV])
             return
             ;;
@@ -64,10 +65,6 @@ _comp_cmd_curl()
             if [[ $cur == \@* ]]; then
                 _comp_compgen -P @ filedir
                 _comp_compgen -aP @ -- -W '-'
-                if [[ ${#COMPREPLY[@]} -eq 1 && -d ${COMPREPLY[0]#@} ]]; then
-                    COMPREPLY[0]+=/
-                    compopt -o nospace
-                fi
             fi
             return
             ;;
@@ -84,7 +81,7 @@ _comp_cmd_curl()
             return
             ;;
         --dns-servers | --noproxy)
-            _comp_compgen_known_hosts -- "${cur##*,}"
+            _comp_compgen -c "${cur##*,}" known_hosts
             ((${#COMPREPLY[@]})) &&
                 _comp_delimited , -W '"${COMPREPLY[@]}"'
             return
@@ -105,7 +102,7 @@ _comp_cmd_curl()
             ;;
         --ftp-port | -${noargopts}P)
             _comp_compgen_available_interfaces -a
-            _comp_compgen -a known_hosts -- "$cur"
+            _comp_compgen -a known_hosts
             _comp_compgen -a ip_addresses -a
             return
             ;;
@@ -144,7 +141,7 @@ _comp_cmd_curl()
             ;;
         --preproxy | --proxy | --socks4 | --socks4a | --socks5 | \
             --socks5-hostname | -${noargopts}x)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         --proto-default)
@@ -185,6 +182,4 @@ _comp_cmd_curl()
         [[ ${COMPREPLY-} ]] || _comp_compgen_help
     fi
 } &&
-    complete -F _comp_cmd_curl curl
-
-# ex: filetype=sh
+    complete -F _comp_cmd_curl curl curlie

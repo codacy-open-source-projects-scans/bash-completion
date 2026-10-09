@@ -1,4 +1,4 @@
-# nc(1) completion                                         -*- shell-script -*-
+# nc(1) completion
 
 _comp_cmd_nc()
 {
@@ -27,7 +27,7 @@ _comp_cmd_nc()
             return
             ;;
         -*x)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -42,8 +42,6 @@ _comp_cmd_nc()
     _comp_count_args -n "" -a "-*[IiMmOPpqsTVWwXx]"
     ((REPLY == 1)) || return
 
-    _comp_compgen_known_hosts -- "$cur"
+    _comp_compgen_known_hosts
 } &&
     complete -F _comp_cmd_nc nc
-
-# ex: filetype=sh

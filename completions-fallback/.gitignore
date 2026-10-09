@@ -17,6 +17,7 @@
 /asdf.bash
 /atlas.bash
 /atmos.bash
+/awless.bash
 /bao.bash
 /bashbot.bash
 /black.bash
@@ -31,6 +32,7 @@
 /cloudquery.bash
 /clusterctl.bash
 /cmctl.bash
+/codex.bash
 /colima.bash
 /conda.bash
 /conform.bash
@@ -38,6 +40,7 @@
 /constellation.bash
 /consul.bash
 /container-structure-test.bash
+/copilot.bash
 /cosign.bash
 /crane.bash
 /crc.bash
@@ -58,10 +61,16 @@
 /dive.bash
 /dlv.bash
 /docker.bash
+/dockerfmt.bash
+/dpkg-deb.bash
+/dpkg-query.bash
 /dprint.bash
 /driftctl.bash
 /dyff.bash
+/encore.bash
 /esc.bash
+/etcdctl.bash
+/etcdutl.bash
 /flask.bash
 /flux.bash
 /furyctl.bash
@@ -89,6 +98,7 @@
 /hd.bash
 /helm.bash
 /helmfile.bash
+/herdr.bash
 /hostctl.bash
 /httpx.bash
 /hugo.bash
@@ -162,10 +172,13 @@
 /okteto.bash
 /op.bash
 /opa.bash
+/opencode.bash
 /oras.bash
 /ory.bash
 /packer.bash
+/pass-cli.bash
 /pip3.bash
+/pipx.bash
 /pitchfork.bash
 /pluto.bash
 /pnpm.bash
@@ -179,10 +192,12 @@
 /regal.bash
 /regctl.bash
 /release-plz.bash
+/rumdl.bash
 /rustic.bash
 /sentry-cli.bash
 /sinker.bash
 /skaffold.bash
+/skupper.bash
 /slsa-verifier.bash
 /sopstool.bash
 /spacectl.bash
@@ -190,10 +205,12 @@
 /ssh-inscribe.bash
 /starship.bash
 /steampipe.bash
+/svu.bash
 /syft.bash
 /talhelper.bash
 /tanzu.bash
 /tanzu-core.bash
+/taplo.bash
 /tctl.bash
 /tendermint.bash
 /terraform.bash
@@ -211,6 +228,7 @@
 /trash-put.bash
 /trash-restore.bash
 /trivy.bash
+/ty.bash
 /upctl.bash
 /uv.bash
 /vacuum.bash
@@ -222,7 +240,10 @@
 /watchexec.bash
 /waydroid.bash
 /xc.bash
+/xh.bash
 /ytt.bash
 /zarf.bash
+/zed.bash
 /zitadel.bash
+/zizmor.bash
 /zola.bash

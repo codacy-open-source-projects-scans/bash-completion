@@ -1,4 +1,4 @@
-# iperf(1) completion                                      -*- shell-script -*-
+# iperf(1) completion
 
 _comp_cmd_iperf()
 {
@@ -44,7 +44,7 @@ _comp_cmd_iperf()
             return
             ;;
         --client | -${noargopts}c)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         --reportexclude | -${noargopts}x)
@@ -90,5 +90,3 @@ _comp_cmd_iperf()
     [[ ${COMPREPLY-} == *= ]] && compopt -o nospace
 } &&
     complete -F _comp_cmd_iperf iperf iperf3
-
-# ex: filetype=sh

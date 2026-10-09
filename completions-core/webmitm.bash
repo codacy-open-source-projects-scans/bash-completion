@@ -1,4 +1,4 @@
-# webmitm completion                                       -*- shell-script -*-
+# webmitm completion
 
 _comp_cmd_webmitm()
 {
@@ -8,10 +8,8 @@ _comp_cmd_webmitm()
     if [[ $cur == -* ]]; then
         _comp_compgen_usage
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 
 } &&
     complete -F _comp_cmd_webmitm webmitm
-
-# ex: filetype=sh

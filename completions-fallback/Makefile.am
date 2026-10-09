@@ -1,5 +1,6 @@
 cross_platform = adb.bash \
 		argc.bash \
+		aws.bash \
 		bombadil.bash \
 		cal.bash \
 		cargo.bash \
@@ -8,10 +9,15 @@ cross_platform = adb.bash \
 		coder.bash \
 		delta.bash \
 		dmesg.bash \
+		dpkg.bash \
+		dpkg-source.bash \
+		dselect.bash \
 		eject.bash \
 		flamegraph.bash \
+		flutter.bash \
 		gaiacli.bash \
 		gh.bash \
+		go.bash \
 		golangci-lint.bash \
 		gsctl.bash \
 		hexdump.bash \
@@ -20,6 +26,7 @@ cross_platform = adb.bash \
 		interdiff.bash \
 		ionice.bash \
 		jj.bash \
+		jreleaser.bash \
 		jungle.bash \
 		keyring.bash \
 		kontena.bash \
@@ -34,10 +41,14 @@ cross_platform = adb.bash \
 		mtr.bash \
 		newgrp.bash \
 		nmcli.bash \
+		node.bash \
 		nox.bash \
 		nvm.bash \
+		pandoc.bash \
+		pew.bash \
 		pip.bash \
 		pipenv.bash \
+		prek.bash \
 		renice.bash \
 		repomanage.bash \
 		reptyr.bash \
@@ -61,7 +72,10 @@ cross_platform = adb.bash \
 		syncthing.bash \
 		task.bash \
 		tokio-console.bash \
+		topgrade.bash \
+		tox.bash \
 		udevadm.bash \
+		update-alternatives.bash \
 		umount.bash \
 		umount.linux.bash \
 		uvx.bash \
@@ -98,6 +112,7 @@ CLEANFILES = \
 	asdf.bash \
 	atlas.bash \
 	atmos.bash \
+	awless.bash \
 	bao.bash \
 	bashbot.bash \
 	black.bash \
@@ -112,6 +127,7 @@ CLEANFILES = \
 	cloudquery.bash \
 	clusterctl.bash \
 	cmctl.bash \
+	codex.bash \
 	colima.bash \
 	conda.bash \
 	conform.bash \
@@ -119,6 +135,7 @@ CLEANFILES = \
 	constellation.bash \
 	consul.bash \
 	container-structure-test.bash \
+	copilot.bash \
 	cosign.bash \
 	crane.bash \
 	crc.bash \
@@ -139,10 +156,16 @@ CLEANFILES = \
 	dive.bash \
 	dlv.bash \
 	docker.bash \
+	dockerfmt.bash \
+	dpkg-deb.bash \
+	dpkg-query.bash \
 	dprint.bash \
 	driftctl.bash \
 	dyff.bash \
+	encore.bash \
 	esc.bash \
+	etcdctl.bash \
+	etcdutl.bash \
 	flask.bash \
 	flux.bash \
 	furyctl.bash \
@@ -170,6 +193,7 @@ CLEANFILES = \
 	hd.bash \
 	helm.bash \
 	helmfile.bash \
+	herdr.bash \
 	hostctl.bash \
 	httpx.bash \
 	hugo.bash \
@@ -243,10 +267,13 @@ CLEANFILES = \
 	okteto.bash \
 	op.bash \
 	opa.bash \
+	opencode.bash \
 	oras.bash \
 	ory.bash \
 	packer.bash \
+	pass-cli.bash \
 	pip3.bash \
+	pipx.bash \
 	pitchfork.bash \
 	pluto.bash \
 	pnpm.bash \
@@ -260,10 +287,12 @@ CLEANFILES = \
 	regal.bash \
 	regctl.bash \
 	release-plz.bash \
+	rumdl.bash \
 	rustic.bash \
 	sentry-cli.bash \
 	sinker.bash \
 	skaffold.bash \
+	skupper.bash \
 	slsa-verifier.bash \
 	sopstool.bash \
 	spacectl.bash \
@@ -271,10 +300,12 @@ CLEANFILES = \
 	sshi.bash \
 	starship.bash \
 	steampipe.bash \
+	svu.bash \
 	syft.bash \
 	talhelper.bash \
 	tanzu.bash \
 	tanzu-core.bash \
+	taplo.bash \
 	tctl.bash \
 	tendermint.bash \
 	terraform.bash \
@@ -292,6 +323,7 @@ CLEANFILES = \
 	trash-put.bash \
 	trash-restore.bash \
 	trivy.bash \
+	ty.bash \
 	upctl.bash \
 	uv.bash \
 	vacuum.bash \
@@ -303,9 +335,12 @@ CLEANFILES = \
 	watchexec.bash \
 	waydroid.bash \
 	xc.bash \
+	xh.bash \
 	ytt.bash \
 	zarf.bash \
+	zed.bash \
 	zitadel.bash \
+	zizmor.bash \
 	zola.bash
 
 symlinks: $(DATA)
@@ -313,13 +348,19 @@ symlinks: $(DATA)
 		mago release-plz
 	$(ss) cal \
 		ncal
+	$(ss) dpkg \
+		dpkg-deb \
+		dpkg-query
 	$(ss) flamegraph \
 		just \
-		watchexec
+		watchexec \
+		zed \
+		zizmor
 	$(ss) gaiacli \
 		gaiad \
 		ngrok \
 		npm \
+		opencode \
 		sopstool \
 		tendermint
 	$(ss) gh \
@@ -334,6 +375,7 @@ symlinks: $(DATA)
 		asdf \
 		atlas \
 		atmos \
+		awless \
 		bashbot \
 		bosh \
 		buf \
@@ -345,11 +387,13 @@ symlinks: $(DATA)
 		cloudquery \
 		clusterctl \
 		cmctl \
+		codex \
 		colima \
 		conform \
 		conftest \
 		constellation \
 		container-structure-test \
+		copilot \
 		cosign \
 		crane \
 		crc \
@@ -367,9 +411,13 @@ symlinks: $(DATA)
 		dive \
 		dlv \
 		docker \
+		dockerfmt \
 		driftctl \
 		dyff \
+		encore \
 		esc \
+		etcdctl \
+		etcdutl \
 		flux \
 		furyctl \
 		gardenctl \
@@ -391,6 +439,7 @@ symlinks: $(DATA)
 		gup \
 		helm \
 		helmfile \
+		herdr \
 		hostctl \
 		hugo \
 		imgpkg \
@@ -469,11 +518,13 @@ symlinks: $(DATA)
 		regctl \
 		sinker \
 		skaffold \
+		skupper \
 		slsa-verifier \
 		spacectl \
 		sshi \
 		ssh-inscribe \
 		steampipe \
+		svu \
 		syft \
 		talhelper \
 		tanzu \
@@ -506,9 +557,12 @@ symlinks: $(DATA)
 		deno \
 		diesel \
 		dprint \
+		pass-cli \
+		rumdl \
 		rustic \
 		sentry-cli \
-		starship
+		starship \
+		taplo
 	$(ss) nox \
 		airflow \
 		ansible \
@@ -522,14 +576,18 @@ symlinks: $(DATA)
 		ansible-vault \
 		conda \
 		cz \
+		pipx \
 		waydroid
 	$(ss) pip \
 		pip3
 	$(ss) pipenv \
 		black blackd flask httpx
+	$(ss) rg \
+		xh
 	$(ss) ruff \
 		mado \
-		uv
+		uv \
+		ty
 	$(ss) sops \
 		kata-runtime todoist
 	$(ss) vault \

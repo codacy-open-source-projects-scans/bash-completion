@@ -1,4 +1,7 @@
-# Debian dpkg-source completion                            -*- shell-script -*-
+# Debian dpkg-source completion
+
+# Use of this file is deprecated.  Upstream completion is available in
+# dpkg >= 1.23.8, use that instead.
 
 _comp_cmd_dpkg_source()
 {
@@ -60,15 +63,11 @@ _comp_cmd_dpkg_source()
                     # -V: set a substitution variable
                     # we don't know anything about possible variables or values
                     # so we don't try to suggest any completion.
-                    COMPREPLY=()
                     ;;
                 -D)
                     # -D: override or add a .dsc field and value
                     # if $cur doesn't contain a = yet, suggest variable names
-                    if [[ $cur == *=* ]]; then
-                        # $cur contains a "="
-                        COMPREPLY=()
-                    else
+                    if [[ $cur != *=* ]]; then
                         _comp_compgen -- -W "$fields"
                     fi
                     ;;
@@ -90,5 +89,3 @@ _comp_cmd_dpkg_source()
     esac
 } &&
     complete -F _comp_cmd_dpkg_source dpkg-source
-
-# ex: filetype=sh

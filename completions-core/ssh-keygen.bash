@@ -1,4 +1,4 @@
-# ssh-keygen(1) completion                                 -*- shell-script -*-
+# ssh-keygen(1) completion
 
 _comp_cmd_ssh_keygen()
 {
@@ -35,7 +35,7 @@ _comp_cmd_ssh_keygen()
             ;;
         -${noargopts}[FR])
             # TODO: trim this down to actual entries in known hosts files
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -${noargopts}[Dw])
@@ -57,7 +57,7 @@ _comp_cmd_ssh_keygen()
         -${noargopts}n)
             [[ ${words[*]} != *\ -*Y\ * ]] || return
             if [[ ${words[*]} == *\ -*h\ * ]]; then
-                _comp_compgen_known_hosts -- "${cur##*,}"
+                _comp_compgen -c "${cur##*,}" known_hosts
                 ((${#COMPREPLY[@]})) &&
                     _comp_delimited , -W '"${COMPREPLY[@]}"'
             else
@@ -177,5 +177,3 @@ _comp_cmd_ssh_keygen()
     fi
 } &&
     complete -F _comp_cmd_ssh_keygen ssh-keygen
-
-# ex: filetype=sh

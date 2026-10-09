@@ -1,4 +1,11 @@
-# tox completion                                           -*- shell-script -*-
+# tox completion
+
+# Use of this file is deprecated.  Upstream completion is available in tox >=
+# 4.36, use that instead.  This was reported in Ref. [1].  The corresponding
+# change in the upstream is introduced in Ref. [2].
+#
+# [1] https://github.com/scop/bash-completion/issues/1628
+# [2] https://github.com/tox-dev/tox/pull/3695
 
 _comp_cmd_tox()
 {
@@ -48,5 +55,3 @@ _comp_cmd_tox()
     fi
 } &&
     complete -F _comp_cmd_tox tox
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# ssh-copy-id(1) completion                                -*- shell-script -*-
+# ssh-copy-id(1) completion
 
 _comp_cmd_ssh_copy_id()
 {
@@ -32,9 +32,7 @@ _comp_cmd_ssh_copy_id()
     if [[ $cur == -* ]]; then
         _comp_compgen_usage -- --help
     else
-        _comp_compgen_known_hosts -a -- "$cur"
+        _comp_compgen_known_hosts -a
     fi
 } &&
     complete -F _comp_cmd_ssh_copy_id ssh-copy-id
-
-# ex: filetype=sh

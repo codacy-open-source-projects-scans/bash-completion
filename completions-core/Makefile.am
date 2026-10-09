@@ -6,6 +6,7 @@ cross_platform = 2to3.bash \
 		acpi.bash \
 		add_members.bash \
 		alias.bash \
+		alternatives.bash \
 		ant.bash \
 		apache2ctl.bash \
 		appdata-validate.bash \
@@ -82,10 +83,9 @@ cross_platform = 2to3.bash \
 		dmypy.bash \
 		dnssec-keygen.bash \
 		dnsspoof.bash \
+		doas.bash \
 		dot.bash \
-		dpkg.bash \
-		dpkg-source.bash \
-		dselect.bash \
+		dpkg-reconfigure.bash \
 		dsniff.bash \
 		dumpdb.bash \
 		dumpe2fs.bash \
@@ -387,7 +387,6 @@ cross_platform = 2to3.bash \
 		timeout.bash \
 		tipc.bash \
 		tmux.bash \
-		tox.bash \
 		tracepath.bash \
 		tree.bash \
 		truncate.bash \
@@ -399,7 +398,6 @@ cross_platform = 2to3.bash \
 		unpack200.bash \
 		unrar.bash \
 		unshunt.bash \
-		update-alternatives.bash \
 		update-rc.d.bash \
 		upgradepkg.bash \
 		urlsnarf.bash \
@@ -488,8 +486,8 @@ CLEANFILES = \
 	aclocal-1.15.bash \
 	aclocal-1.16.bash \
 	aclocal-1.17.bash \
+	aclocal-1.18.bash \
 	alpine.bash \
-	alternatives.bash \
 	animate.bash \
 	apropos.bash \
 	aptitude-curses.bash \
@@ -504,6 +502,7 @@ CLEANFILES = \
 	automake-1.15.bash \
 	automake-1.16.bash \
 	automake-1.17.bash \
+	automake-1.18.bash \
 	autossh.bash \
 	autoupdate.bash \
 	avahi-browse-domains.bash \
@@ -534,12 +533,10 @@ CLEANFILES = \
 	cowthink.bash \
 	createdb.bash \
 	createuser.bash \
+	curlie.bash \
 	dcop.bash \
 	dfutool.bash \
 	display.bash \
-	dpkg-deb.bash \
-	dpkg-query.bash \
-	dpkg-reconfigure.bash \
 	dropdb.bash \
 	dropuser.bash \
 	edquota.bash \
@@ -592,6 +589,7 @@ CLEANFILES = \
 	gtar.bash \
 	hciattach.bash \
 	hciconfig.bash \
+	helium.bash \
 	host.bash \
 	hping.bash \
 	hping3.bash \
@@ -823,7 +821,8 @@ symlinks: $(DATA)
 		7zzs
 	$(ss) aclocal \
 		aclocal-1.10 aclocal-1.11 aclocal-1.12 aclocal-1.13 \
-		aclocal-1.14 aclocal-1.15 aclocal-1.16 aclocal-1.17
+		aclocal-1.14 aclocal-1.15 aclocal-1.16 aclocal-1.17 \
+		aclocal-1.18
 	$(ss) ant \
 		phing
 	$(ss) aptitude \
@@ -832,7 +831,8 @@ symlinks: $(DATA)
 		asciidoc.py
 	$(ss) automake \
 		automake-1.10 automake-1.11 automake-1.12 automake-1.13 \
-		automake-1.14 automake-1.15 automake-1.16 automake-1.17
+		automake-1.14 automake-1.15 automake-1.16 automake-1.17 \
+		automake-1.18
 	$(ss) autoreconf \
 		autoheader
 	$(ss) autoscan \
@@ -849,7 +849,7 @@ symlinks: $(DATA)
 		pushd
 	$(ss) chromium-browser \
 		brave brave-browser chrome chromium google-chrome \
-		google-chrome-stable
+		google-chrome-stable helium
 	$(ss) complete \
 		compgen
 	$(ss) convert \
@@ -857,12 +857,12 @@ symlinks: $(DATA)
 		mogrify montage stream
 	$(ss) cowsay \
 		cowthink
+	$(ss) curl \
+		curlie
 	$(ss) declare \
 		typeset
 	$(ss) dict \
 		rdict
-	$(ss) dpkg \
-		dpkg-deb dpkg-query dpkg-reconfigure
 	$(ss) ether-wake \
 		etherwake
 	$(ss) filesnarf \
@@ -1017,8 +1017,6 @@ endif
 		bsdtar gtar star
 	$(ss) tracepath \
 		tracepath6
-	$(ss) update-alternatives \
-		alternatives
 	$(ss) vipw \
 		vigr
 	$(ss) vncviewer \

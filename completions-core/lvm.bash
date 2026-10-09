@@ -1,4 +1,4 @@
-# bash completion for lvm                                  -*- shell-script -*-
+# bash completion for lvm
 
 _comp_cmd_lvm__filedir()
 {
@@ -28,11 +28,7 @@ _comp_cmd_lvm__logicalvolumes()
     _comp_compgen_split -- "$(lvscan 2>/dev/null |
         command sed -n -e "s|^.*'\(.*\)'.*$|\1|p")"
     if [[ $cur == /dev/mapper/* ]]; then
-        _comp_compgen -a filedir
-        local i
-        for i in "${!COMPREPLY[@]}"; do
-            [[ ${COMPREPLY[i]} == */control ]] && unset -v 'COMPREPLY[i]'
-        done
+        _comp_compgen -a filedir -X '*/control'
     fi
 }
 
@@ -901,5 +897,3 @@ _comp_cmd_lvm()
     fi
 } &&
     complete -F _comp_cmd_lvm lvm
-
-# ex: filetype=sh

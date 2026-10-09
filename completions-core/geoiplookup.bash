@@ -1,4 +1,4 @@
-# geoiplookup(1) completion                                -*- shell-script -*-
+# geoiplookup(1) completion
 
 _comp_cmd_geoiplookup()
 {
@@ -26,8 +26,6 @@ _comp_cmd_geoiplookup()
 
     local ipvx
     [[ $1 == *6 ]] && ipvx=-6 || ipvx=-4
-    _comp_compgen_known_hosts $ipvx -- "$cur"
+    _comp_compgen_known_hosts $ipvx
 } &&
     complete -F _comp_cmd_geoiplookup geoiplookup geoiplookup6
-
-# ex: filetype=sh

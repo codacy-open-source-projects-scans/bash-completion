@@ -1,4 +1,4 @@
-# bash completion for ldapvi                               -*- shell-script -*-
+# bash completion for ldapvi
 
 _comp_cmd_ldapvi()
 {
@@ -9,7 +9,7 @@ _comp_cmd_ldapvi()
     # shellcheck disable=SC2254
     case $prev in
         --host | -${noargopts}h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         --sasl-mech | -${noargopts}Y)
@@ -48,5 +48,3 @@ _comp_cmd_ldapvi()
     fi
 } &&
     complete -F _comp_cmd_ldapvi ldapvi
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# bash completion for openldap                             -*- shell-script -*-
+# bash completion for openldap
 
 _comp_cmd_ldapsearch__ldap_uris()
 {
@@ -17,7 +17,7 @@ _comp_cmd_ldapsearch()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -60,7 +60,7 @@ _comp_cmd_ldapadd()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -91,7 +91,7 @@ _comp_cmd_ldapdelete()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -122,7 +122,7 @@ _comp_cmd_ldapcompare()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -153,7 +153,7 @@ _comp_cmd_ldapmodrdn()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -184,7 +184,7 @@ _comp_cmd_ldapwhoami()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -215,7 +215,7 @@ _comp_cmd_ldappasswd()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*H)
@@ -234,5 +234,3 @@ _comp_cmd_ldappasswd()
     fi
 } &&
     complete -F _comp_cmd_ldappasswd ldappasswd
-
-# ex: filetype=sh

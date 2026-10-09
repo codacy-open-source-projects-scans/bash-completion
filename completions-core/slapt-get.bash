@@ -1,4 +1,4 @@
-# slapt-get(8) completion                                  -*- shell-script -*-
+# slapt-get(8) completion
 
 _comp_cmd_slapt_get()
 {
@@ -74,7 +74,7 @@ _comp_cmd_slapt_get()
             return
             ;;
         ins) # --remove|--filelist
-            _comp_compgen -C /var/log/packages filedir -f
+            _comp_compgen -C /var/log/packages filedir
             return
             ;;
         set) # --install-set
@@ -84,5 +84,3 @@ _comp_cmd_slapt_get()
     esac
 } &&
     complete -F _comp_cmd_slapt_get slapt-get
-
-# ex: filetype=sh

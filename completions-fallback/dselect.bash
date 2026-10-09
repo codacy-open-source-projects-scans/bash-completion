@@ -1,4 +1,7 @@
-# Debian Linux dselect(8) completion                       -*- shell-script -*-
+# Debian Linux dselect(8) completion
+
+# Use of this file is deprecated.  Upstream completion is available in
+# dpkg >= 1.23.8, use that instead.
 
 _comp_cmd_dselect()
 {
@@ -24,5 +27,3 @@ _comp_cmd_dselect()
 
 } &&
     complete -F _comp_cmd_dselect dselect
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# bash completion for rdesktop                             -*- shell-script -*-
+# bash completion for rdesktop
 
 _comp_cmd_rdesktop()
 {
@@ -45,10 +45,8 @@ _comp_cmd_rdesktop()
         ((${#opts[@]})) &&
             _comp_compgen -- -W '"${opts[@]%:}"'
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 
 } &&
     complete -F _comp_cmd_rdesktop rdesktop
-
-# ex: filetype=sh

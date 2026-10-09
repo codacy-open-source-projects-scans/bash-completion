@@ -60,6 +60,7 @@ createdb
 cryptsetup
 csplit
 curl
+curlie
 cut
 cvs
 cvsps
@@ -78,6 +79,7 @@ display
 dmesg
 dmypy
 dnsspoof
+doas
 dpkg
 dpkg-deb
 dpkg-query

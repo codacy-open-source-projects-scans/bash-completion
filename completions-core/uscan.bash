@@ -1,4 +1,4 @@
-# uscan completion                                         -*- shell-script -*-
+# uscan completion
 
 _comp_cmd_uscan()
 {
@@ -20,7 +20,6 @@ _comp_cmd_uscan()
             ;;
         --timeout | --upstream-version | --download-version | \
             --check-dirname-level | --check-dirname-regex)
-            COMPREPLY=()
             return
             ;;
     esac
@@ -30,5 +29,3 @@ _comp_cmd_uscan()
     _comp_compgen_help
 } &&
     complete -F _comp_cmd_uscan uscan
-
-# ex: filetype=sh

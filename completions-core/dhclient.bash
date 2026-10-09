@@ -1,4 +1,4 @@
-# bash completion for dhclient                             -*- shell-script -*-
+# bash completion for dhclient
 
 _comp_cmd_dhclient()
 {
@@ -18,7 +18,7 @@ _comp_cmd_dhclient()
             return
             ;;
         -s)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -30,5 +30,3 @@ _comp_cmd_dhclient()
     fi
 } &&
     complete -F _comp_cmd_dhclient dhclient
-
-# ex: filetype=sh

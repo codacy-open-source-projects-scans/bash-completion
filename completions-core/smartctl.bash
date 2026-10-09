@@ -1,4 +1,4 @@
-# bash completion for smartctl(8)                          -*- shell-script -*-
+# bash completion for smartctl(8)
 # Updated for smartmontools 7.5 (released 2025-04-30)
 
 _comp_cmd_smartctl__set_nospace_if_incomplete()
@@ -67,10 +67,8 @@ _comp_cmd_smartctl__drivedb()
     local prefix=
     if [[ $cur == +* ]]; then
         prefix=+
-        cur="${cur#+}"
     fi
-    _comp_compgen_filedir h && [[ $prefix ]] &&
-        _comp_compgen -Rv COMPREPLY -- -P "$prefix" -W '"${COMPREPLY[@]}"'
+    _comp_compgen -P "$prefix" filedir h
 }
 _comp_cmd_smartctl__vendorattribute()
 {
@@ -202,5 +200,3 @@ _comp_cmd_smartctl()
     fi
 } &&
     complete -F _comp_cmd_smartctl smartctl
-
-# ex: filetype=sh

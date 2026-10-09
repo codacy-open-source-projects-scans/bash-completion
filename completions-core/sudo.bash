@@ -1,4 +1,4 @@
-# bash completion for sudo(8)                              -*- shell-script -*-
+# bash completion for sudo(8)
 
 _comp_cmd_sudo()
 {
@@ -8,7 +8,7 @@ _comp_cmd_sudo()
     local i mode=normal
     [[ $1 == *sudoedit ]] && mode=edit
 
-    local noargopts='!(-*|*[CDghpRrTtUu]*)'
+    local noargopts='!(-*|*[CDghpRrtTUu]*)'
     [[ $mode == normal ]] &&
         for ((i = 1; i <= cword; i++)); do
             if [[ ${words[i]} != -* ]]; then
@@ -23,7 +23,7 @@ _comp_cmd_sudo()
                 break
             fi
             # shellcheck disable=SC2254
-            [[ ${words[i]} == @(--@(close-from|chdir|group|host|prompt|chroot|role|command-timeout|type|other-user|user)|-${noargopts}[CDghpRrTtUu]) ]] &&
+            [[ ${words[i]} == @(--@(close-from|chdir|preserve-env|group|host|prompt|chroot|role|type|command-timeout|user|other-user)|-${noargopts}[CDghpRrtTUu]) ]] &&
                 ((i++))
         done
 
@@ -37,8 +37,9 @@ _comp_cmd_sudo()
             _comp_compgen -- -g
             return
             ;;
-        --close-from | --prompt | --role | --type | --command-timeout | \
-            -${noargopts}[CprTt])
+        --close-from | --preserve-env | --help | --prompt | --role | --type | \
+            --command-timeout | --version | \
+            -${noargopts}[CprTtV]) # no "h", sudo.ws treats it as host with arg
             return
             ;;
         --chdir | --chroot | -${noargopts}[DR])
@@ -46,7 +47,7 @@ _comp_cmd_sudo()
             return
             ;;
         --host | -${noargopts}h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -63,5 +64,3 @@ _comp_cmd_sudo()
     fi
 } &&
     complete -F _comp_cmd_sudo sudo sudoedit sudo.ws sudo-rs
-
-# ex: filetype=sh

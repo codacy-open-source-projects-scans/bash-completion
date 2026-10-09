@@ -1,4 +1,4 @@
-# bash completion for slackpkg(8)                          -*- shell-script -*-
+# bash completion for slackpkg(8)
 # options list is based on `grep '\-.*\=.*)' /usr/sbin/slackpkg | cut -f1 -d\)`
 
 # Use of this file is deprecated.
@@ -65,7 +65,7 @@ _comp_cmd_slackpkg()
             ;;
         install-template | remove-template)
             if [[ -e $confdir/templates ]]; then
-                _comp_compgen -C "$confdir/templates" filedir -f template &&
+                _comp_compgen -C "$confdir/templates" filedir template &&
                     COMPREPLY=("${COMPREPLY[@]%.template}")
             fi
             return
@@ -74,7 +74,7 @@ _comp_cmd_slackpkg()
             _comp_compgen_filedir
             _comp_compgen -a -- -W 'a ap d e f k kde kdei l n t tcl x xap xfce
                 y'
-            _comp_compgen -aC /var/log/packages filedir -f
+            _comp_compgen -aC /var/log/packages filedir
             return
             ;;
         install | reinstall | upgrade | blacklist | download)
@@ -107,5 +107,3 @@ _comp_cmd_slackpkg()
 
 } &&
     complete -F _comp_cmd_slackpkg slackpkg
-
-# ex: filetype=sh

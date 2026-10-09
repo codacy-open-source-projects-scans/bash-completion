@@ -1,4 +1,4 @@
-# bash completion for xm                                   -*- shell-script -*-
+# bash completion for xm
 
 # Use of this file is deprecated.  The 'xm' command itself is no longer
 # provided by upstream.  It has been replaced with the 'xl' command, for
@@ -93,7 +93,7 @@ _comp_cmd_xm()
                             _comp_cmd_xm__domain_names
                             ;;
                         3)
-                            _comp_compgen_known_hosts -- "$cur"
+                            _comp_compgen_known_hosts
                             ;;
                     esac
                     ;;
@@ -213,5 +213,3 @@ _comp_cmd_xm()
     fi
 } &&
     complete -F _comp_cmd_xm xm
-
-# ex: filetype=sh

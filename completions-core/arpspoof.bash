@@ -1,4 +1,4 @@
-# arpspoof completion                                      -*- shell-script -*-
+# arpspoof completion
 
 _comp_cmd_arpspoof()
 {
@@ -11,7 +11,7 @@ _comp_cmd_arpspoof()
             return
             ;;
         -t)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -19,10 +19,8 @@ _comp_cmd_arpspoof()
     if [[ $cur == -* ]]; then
         _comp_compgen_usage
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 
 } &&
     complete -F _comp_cmd_arpspoof arpspoof
-
-# ex: filetype=sh

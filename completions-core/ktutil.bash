@@ -1,4 +1,4 @@
-# ktutil completion                                        -*- shell-script -*-
+# ktutil completion
 
 _comp_cmd_ktutil__heimdal_principals()
 {
@@ -35,7 +35,7 @@ _comp_cmd_ktutil()
             return
             ;;
         -a | --admin-server)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -r | --realm)
@@ -115,5 +115,3 @@ _comp_cmd_ktutil()
     fi
 } &&
     complete -F _comp_cmd_ktutil ktutil
-
-# ex: filetype=sh

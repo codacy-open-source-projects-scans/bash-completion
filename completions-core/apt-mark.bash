@@ -1,4 +1,4 @@
-# Debian apt-mark(8) completion                            -*- shell-script -*-
+# Debian apt-mark(8) completion
 
 _comp_cmd_apt_mark()
 {
@@ -50,7 +50,8 @@ _comp_cmd_apt_mark()
     [[ $was_split ]] && return
 
     if [[ $cur == -* ]]; then
-        _comp_compgen -- -W '--file= --help --version --config-file --option'
+        _comp_compgen -- -W '--file= --help --version --audit --config-file
+            --option --cli-version --no-color --color'
         [[ ${COMPREPLY-} == *= ]] && compopt -o nospace
     else
         _comp_compgen -- -W 'auto manual minimize-manual showauto showmanual
@@ -60,5 +61,3 @@ _comp_cmd_apt_mark()
 
 } &&
     complete -F _comp_cmd_apt_mark apt-mark
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# chromium-browser completion                              -*- shell-script -*-
+# chromium-browser completion
 
 _comp_cmd_chromium_browser()
 {
@@ -17,8 +17,7 @@ _comp_cmd_chromium_browser()
             case $cur in
                 *://*)
                     local prefix="${cur%%://*}://"
-                    _comp_compgen_known_hosts -- "${cur#*://}" &&
-                        _comp_compgen -Rv COMPREPLY -- -P "$prefix" -W '"${COMPREPLY[@]}"'
+                    _comp_compgen -P "$prefix" known_hosts
                     _comp_ltrim_colon_completions "$cur"
                     ;;
                 *)
@@ -45,6 +44,4 @@ _comp_cmd_chromium_browser()
     _comp_compgen_filedir "@(?([mxs])htm?(l)|pdf|txt)"
 } &&
     complete -F _comp_cmd_chromium_browser chromium-browser google-chrome \
-        google-chrome-stable chromium chrome brave brave-browser
-
-# ex: filetype=sh
+        google-chrome-stable chromium chrome brave brave-browser helium

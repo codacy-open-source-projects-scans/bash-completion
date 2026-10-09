@@ -1,4 +1,4 @@
-# wol(1) completion                                        -*- shell-script -*-
+# wol(1) completion
 
 _comp_cmd_wol()
 {
@@ -21,7 +21,7 @@ _comp_cmd_wol()
                     -ne 's/.*[[:space:]]Bcast:\([^[:space:]]*\).*/\1/p' \
                     -ne 's/.*inet.*[[:space:]]brd[[:space:]]\([^[:space:]]*\).*/\1/p' \
                     -ne 's/.*[[:space:]]broadcast[[:space:]]\{1,\}\([^[:space:]]*\).*/\1/p')"
-            _comp_compgen -a known_hosts -- "$cur"
+            _comp_compgen -a known_hosts
             return
             ;;
         --file | -${noargopts}f)
@@ -41,5 +41,3 @@ _comp_cmd_wol()
     _comp_compgen_mac_addresses
 } &&
     complete -F _comp_cmd_wol wol
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# bash completion for inotifywait(1) and inotifywatch(1)   -*- shell-script -*-
+# bash completion for inotifywait(1) and inotifywatch(1)
 
 _comp_cmd_inotifywait__events()
 {
@@ -15,7 +15,7 @@ _comp_cmd_inotifywait()
     local cur prev words cword comp_args
     _comp_initialize -- "$@" || return
 
-    local noargopts='!(-*|*[oe]*)'
+    local noargopts='!(-*|*[toe]*)'
     # shellcheck disable=SC2254
     case $prev in
         --help | --exclude | --excludei | --include | --includei | --format | --timefmt | --timeout | -${noargopts}[ht])
@@ -41,9 +41,12 @@ _comp_cmd_inotifywait()
         return
     fi
 
+    if [[ $cur == @* ]]; then
+        _comp_compgen -P "@" filedir
+        return 0
+    fi
+
     _comp_compgen_filedir
 } &&
     complete -F _comp_cmd_inotifywait inotifywait inotifywatch fsnotifywait \
         fsnotifywatch
-
-# ex: filetype=sh

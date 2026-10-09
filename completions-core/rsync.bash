@@ -1,4 +1,4 @@
-# bash completion for rsync                                -*- shell-script -*-
+# bash completion for rsync
 
 _comp_cmd_rsync__vercomp()
 {
@@ -117,11 +117,9 @@ _comp_cmd_rsync()
             fi
             ;;
         *)
-            _comp_compgen_known_hosts -c -a -- "$cur"
+            _comp_compgen_known_hosts -c -a
             _comp_compgen -ax scp local_files
             ;;
     esac
 } &&
     complete -F _comp_cmd_rsync -o nospace rsync
-
-# ex: filetype=sh

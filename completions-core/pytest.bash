@@ -1,4 +1,4 @@
-# bash completion for pytest(1)                            -*- shell-script -*-
+# bash completion for pytest(1)
 
 _comp_cmd_pytest__option_choice_args()
 {
@@ -115,7 +115,7 @@ _comp_cmd_pytest()
                 COMPREPLY+=("${BASH_REMATCH[2]}")
             fi
         done 2>/dev/null <"$file"
-        ((!${#COMPREPLY[@]})) ||
+        ((! ${#COMPREPLY[@]})) ||
             _comp_compgen -c "${cur##*:?(:)}" -- -P "$file::$class::" \
                 -W '"${COMPREPLY[@]}"'
         _comp_ltrim_colon_completions "$cur"
@@ -129,7 +129,7 @@ _comp_cmd_pytest()
                 COMPREPLY+=("${BASH_REMATCH[2]}")
             fi
         done 2>/dev/null <"$file"
-        ((!${#COMPREPLY[@]})) ||
+        ((! ${#COMPREPLY[@]})) ||
             _comp_compgen -c "${cur##*.py:?(:)}" -- -P "$file::" \
                 -W '"${COMPREPLY[@]}"'
         _comp_ltrim_colon_completions "$cur"
@@ -140,5 +140,3 @@ _comp_cmd_pytest()
 } &&
     complete -F _comp_cmd_pytest \
         pytest pytest-2 pytest-3 py.test py.test-2 py.test-3
-
-# ex: filetype=sh

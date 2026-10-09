@@ -1,4 +1,4 @@
-# bash completion for ipmitool                             -*- shell-script -*-
+# bash completion for ipmitool
 
 _comp_cmd_ipmitool__singleline_help()
 {
@@ -28,7 +28,7 @@ _comp_cmd_ipmitool()
             return
             ;;
         -*H)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*[fSO])
@@ -189,5 +189,3 @@ _comp_cmd_ipmitool()
     esac
 } &&
     complete -F _comp_cmd_ipmitool ipmitool
-
-# ex: filetype=sh

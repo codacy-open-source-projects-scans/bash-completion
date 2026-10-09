@@ -1,4 +1,4 @@
-# bash completion for medusa                               -*- shell-script -*-
+# bash completion for medusa
 
 _comp_cmd_medusa()
 {
@@ -7,7 +7,7 @@ _comp_cmd_medusa()
 
     case $prev in
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -*[HUPCO])
@@ -26,5 +26,3 @@ _comp_cmd_medusa()
     fi
 } &&
     complete -F _comp_cmd_medusa medusa
-
-# ex: filetype=sh

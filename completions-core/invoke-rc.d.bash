@@ -1,4 +1,4 @@
-# invoke-rc.d(8) completion                                -*- shell-script -*-
+# invoke-rc.d(8) completion
 #
 # Copyright (C) 2004 Servilio Afre Puentes <servilio@gmail.com>
 
@@ -7,11 +7,7 @@ _comp_cmd_invoke_rc_d()
     local cur prev words cword comp_args
     _comp_initialize -- "$@" || return
 
-    local sysvdir services options
-
-    [[ -d /etc/rc.d/init.d ]] && sysvdir=/etc/rc.d/init.d ||
-        sysvdir=/etc/init.d
-
+    local options
     options=(--help --quiet --force --try-anyway --disclose-deny --query
         --no-fallback)
 
@@ -21,18 +17,16 @@ _comp_cmd_invoke_rc_d()
         local exclude="@(${words[*]})"
         _comp_unlocal IFS
         _comp_compgen -- -W '"${options[@]}"' -X "$exclude"
+        _comp_compgen -a sysv_services
+        return
+    fi
 
-        _comp_expand_glob services '"$sysvdir"/!(README*|*.sh|$_comp_backup_glob)' &&
-            _comp_compgen -a -- -W '"${services[@]#"$sysvdir"/}"'
-    elif [[ -x $sysvdir/$prev ]]; then
+    local sysvdirs
+    if _comp_sysvdirs && [[ -x ${sysvdirs[0]}/$prev ]]; then
         _comp_compgen_split -- "$(command sed -e 'y/|/ /' \
             -ne 's/^.*Usage:[ ]*[^ ]*[ ]*{*\([^}"]*\).*$/\1/p' \
-            "$sysvdir/$prev")"
-    else
-        COMPREPLY=()
+            "${sysvdirs[0]}/$prev")"
     fi
 
 } &&
     complete -F _comp_cmd_invoke_rc_d invoke-rc.d
-
-# ex: filetype=sh

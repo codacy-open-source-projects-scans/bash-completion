@@ -1,4 +1,4 @@
-# wget(1) completion                                       -*- shell-script -*-
+# wget(1) completion
 
 _comp_cmd_wget()
 {
@@ -20,7 +20,7 @@ _comp_cmd_wget()
             return
             ;;
         --domains | --exclude-domains | -${noargopts}D)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         --restrict-file-names)
@@ -176,5 +176,3 @@ _comp_cmd_wget()
 
 } &&
     complete -F _comp_cmd_wget wget
-
-# ex: filetype=sh

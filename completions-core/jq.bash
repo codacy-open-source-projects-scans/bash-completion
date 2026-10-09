@@ -1,4 +1,4 @@
-# jq(1) completion                                         -*- shell-script -*-
+# jq(1) completion
 
 _comp_cmd_jq()
 {
@@ -8,11 +8,13 @@ _comp_cmd_jq()
     local noargopts='!(-*|*[fL]*)'
     # shellcheck disable=SC2254
     case $prev in
-        --help | --version | --arg | --argjson | --slurpfile | --argfile)
+        --help | --version | --arg | --argjson | --slurpfile | --argfile | \
+            --rawfile)
             return
             ;;
         --indent)
-            _comp_compgen -- -W '{1..8}'
+            # jq 1.8.1 accepts -1 to 7
+            _comp_compgen -- -W '{-1..7}'
             return
             ;;
         --from-file | --run-tests | -${noargopts}f)
@@ -34,6 +36,10 @@ _comp_cmd_jq()
                 _comp_compgen_filedir 'json?(l)'
                 return
                 ;;
+            --rawfile)
+                _comp_compgen_filedir
+                return
+                ;;
         esac
 
     if [[ $cur == -* ]]; then
@@ -50,7 +56,7 @@ _comp_cmd_jq()
             # not appear in the output of --help as of jq 1.6.
             _comp_compgen -- -W '--version --seq --stream --slurp --raw-input
                 --null-input --compact-output --tab --indent --color-output
-                -monochrome-output --ascii-output --unbuffered --sort-keys
+                --monochrome-output --ascii-output --unbuffered --sort-keys
                 --raw-output --join-output --from-file --exit-status --arg
                 --argjson --slurpfile --rawfile --argfile --args --jsonargs
                 --run-tests --help'
@@ -66,7 +72,7 @@ _comp_cmd_jq()
     local REPLY
     # TODO: DTRT with args taking 2 options
     # -f|--from-file are not counted here because they supply the filter
-    _comp_count_args -a "@(--arg|--arg?(json|file)|--slurpfile|--indent|--run-tests|-${noargopts}L)"
+    _comp_count_args -a "@(--arg|--arg?(json|file)|--slurpfile|--rawfile|--indent|--run-tests|-${noargopts}L)"
 
     # 1st arg is filter
     ((REPLY == 1)) && return
@@ -75,5 +81,3 @@ _comp_cmd_jq()
 
 } &&
     complete -F _comp_cmd_jq jq
-
-# ex: filetype=sh

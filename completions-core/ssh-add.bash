@@ -1,4 +1,4 @@
-# ssh-add(1) completion                                    -*- shell-script -*-
+# ssh-add(1) completion
 
 _comp_cmd_ssh_add()
 {
@@ -19,7 +19,7 @@ _comp_cmd_ssh_add()
             if [[ $cur == *@* ]]; then
                 _comp_complete_user_at_host "$@"
             else
-                _comp_compgen_known_hosts -- "$cur"
+                _comp_compgen_known_hosts
             fi
             return
             ;;
@@ -44,5 +44,3 @@ _comp_cmd_ssh_add()
     _comp_compgen_filedir
 } &&
     complete -F _comp_cmd_ssh_add ssh-add
-
-# ex: filetype=sh

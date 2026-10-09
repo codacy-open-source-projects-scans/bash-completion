@@ -1,4 +1,4 @@
-# ssh(1) completion                                        -*- shell-script -*-
+# ssh(1) completion
 
 _comp_cmd_ssh__compgen_queries()
 {
@@ -199,7 +199,7 @@ _comp_cmd_ssh__compgen_suboption()
             fi
             ;;
         proxyjump)
-            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"} -- "$cur"
+            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"}
             ;;
         proxycommand | remotecommand | localcommand)
             _comp_compgen_commands
@@ -286,8 +286,7 @@ _comp_xfunc_ssh_compgen_identityfile()
 {
     local cur=$cur tmp
     [[ ! $cur && -d ~/.ssh ]] && cur=~/.ssh/id
-    _comp_compgen -v tmp -c "$cur" filedir &&
-        _comp_compgen -U tmp -- -W '"${tmp[@]}"' -X "${1:+!}*.pub"
+    _comp_compgen -c "$cur" filedir -X "${1:+!}*.pub"
 }
 
 _comp_deprecate_func 2.12 _ssh_identityfile _comp_xfunc_ssh_compgen_identityfile
@@ -335,7 +334,7 @@ _comp_cmd_ssh()
             return
             ;;
         -*J)
-            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"} -- "$cur"
+            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"}
             return
             ;;
         -*l)
@@ -382,8 +381,7 @@ _comp_cmd_ssh()
             compopt -o filenames
             _comp_compgen_commands
         else
-            _comp_compgen_known_hosts ${ipvx-} -a ${configfile:+-F "$configfile"} \
-                -- "$cur"
+            _comp_compgen_known_hosts ${ipvx-} -a ${configfile:+-F "$configfile"}
         fi
     fi
 } &&
@@ -425,7 +423,7 @@ _comp_cmd_sftp()
             return
             ;;
         -*J)
-            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"} -- "$cur"
+            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"}
             return
             ;;
         -*o)
@@ -449,7 +447,7 @@ _comp_cmd_sftp()
     elif [[ $cur == -* ]]; then
         _comp_compgen_usage
     else
-        _comp_compgen_known_hosts ${ipvx:+"$ipvx"} -a ${configfile:+-F "$configfile"} -- "$cur"
+        _comp_compgen_known_hosts ${ipvx:+"$ipvx"} -a ${configfile:+-F "$configfile"}
     fi
 } &&
     shopt -u hostcomplete && complete -F _comp_cmd_sftp sftp
@@ -571,7 +569,7 @@ _comp_xfunc_scp_compgen_remote_files()
 
     # default to home dir of specified user on remote host
     if [[ ! $_path ]]; then
-        _path=$(ssh -o 'Batchmode yes' "$_userhost" pwd 2>/dev/null)
+        _path=$(ssh -o 'Batchmode yes' "$_userhost" pwd </dev/null 2>/dev/null)
     fi
 
     local _escape_replacement='\\\\\\&'
@@ -581,7 +579,7 @@ _comp_xfunc_scp_compgen_remote_files()
 
     local _files
     _files=$(ssh -o 'Batchmode yes' "$_userhost" \
-        command ls -aF1dL "$_path*" 2>/dev/null |
+        command ls -aF1dL "$_path*" </dev/null 2>/dev/null |
         _comp_cmd_scp__escape_path ${_dirs_only:+'-d'} -- \
             "$_escape_replacement")
     _comp_compgen -R split -l -- "$_files"
@@ -662,7 +660,7 @@ _comp_cmd_scp()
             return
             ;;
         -*J)
-            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"} -- "$cur"
+            _comp_compgen_known_hosts -a ${configfile:+-F "$configfile"}
             return
             ;;
         -*[lP])
@@ -690,7 +688,26 @@ _comp_cmd_scp()
     case $cur in
         !(*:*)/* | [.~]*) ;; # looks like a path
         *:*)
-            _comp_xfunc_scp_compgen_remote_files
+            # if scp supports "-O", which forces legacy scp/rcp protocols,
+            # it means it uses the sftp protocol by default, so we need less
+            # escaping.
+            # The change was done in OpenSSH 9.0 [0], see [1]
+            #
+            # [0] https://www.openssh.org/releasenotes.html#9.0
+            # [1] https://github.com/scop/bash-completion/issues/1540
+            local arg legacy_scp=""
+            for arg in "${words[@]}"; do
+                if [[ $arg == -*O* ]]; then
+                    legacy_scp=set
+                    break
+                fi
+            done
+
+            if [[ $legacy_scp || ! $("$1" --usage 2>&1) =~ scp\ \[-[^]]*O ]]; then
+                _comp_xfunc_scp_compgen_remote_files
+            else
+                _comp_xfunc_scp_compgen_remote_files -l
+            fi
             return
             ;;
     esac
@@ -710,7 +727,7 @@ _comp_cmd_scp()
             *)
                 if ! _comp_looks_like_path "$cur"; then
                     _comp_compgen_known_hosts ${ipvx-} -c -a \
-                        ${configfile:+-F "$configfile"} -- "$cur"
+                        ${configfile:+-F "$configfile"}
                 fi
                 ;;
         esac
@@ -719,5 +736,3 @@ _comp_cmd_scp()
     _comp_compgen -ax scp local_files "${prefix-}"
 } &&
     complete -F _comp_cmd_scp -o nospace scp
-
-# ex: filetype=sh

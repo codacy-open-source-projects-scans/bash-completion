@@ -1,4 +1,4 @@
-# bash completion for vpnc                                 -*- shell-script -*-
+# bash completion for vpnc
 
 _comp_cmd_vpnc()
 {
@@ -12,7 +12,7 @@ _comp_cmd_vpnc()
             return
             ;;
         --gateway)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         --vendor)
@@ -74,5 +74,3 @@ _comp_cmd_vpnc()
     fi
 } &&
     complete -F _comp_cmd_vpnc vpnc
-
-# ex: filetype=sh

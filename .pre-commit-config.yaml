@@ -14,11 +14,11 @@ repos:
           - --commit-file
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.13.1-1
+    rev: v3.14.1-1
     hooks:
       - id: shfmt
         types: [text]
-        files: ^(bash_completion(\.d/[^/]+\.bash)?|completions-(core|fallback)/.+\.bash|test/(config/bashrc|fixtures/.+/bin/.+|runLint|update-test-cmd-list)|.+\.sh(\.in)?)$
+        files: ^(bash_completion|completions-(core|fallback)/.+\.bash|startup-core/.+\.bash|test/(config/bashrc|fixtures/.+/bin/.+|runLint|update-test-cmd-list)|.+\.sh(\.in)?)$
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1
@@ -26,7 +26,7 @@ repos:
       - id: shellcheck
         args: [-f, gcc]
         types: [text]
-        files: ^(bash_completion(\.d/[^/]+\.bash)?|completions-(core|fallback)/.+\.bash|test/(config/bashrc|fixtures/.+/bin/.+|runLint|update-test-cmd-list)|.+\.sh(\.in)?)$
+        files: ^(bash_completion|completions-(core|fallback)/.+\.bash|startup-core/.+\.bash|test/(config/bashrc|fixtures/.+/bin/.+|runLint|update-test-cmd-list)|.+\.sh(\.in)?)$
         require_serial: false  # We disable SC1090 anyway, so parallel is ok
 
   - repo: local
@@ -39,7 +39,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.6
+    rev: v0.15.20
     hooks:
       - id: ruff-check
         types: [text]
@@ -77,7 +77,7 @@ repos:
         files: ^(helpers-core/perl|.+\.p[ml])$
 
   - repo: https://github.com/rvben/rumdl-pre-commit
-    rev: v0.1.5
+    rev: v0.1.96
     hooks:
       - id: rumdl-fmt
 
@@ -88,13 +88,13 @@ repos:
       - id: check-illegal-windows-names
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.44.0
+    rev: v1.49.0
     hooks:
       - id: typos
         exclude: ^(CHANGELOG\.md|test/(test-cmd-list\.txt|fixtures/.+))$
 
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.23.1
+    rev: v1.29.0
     hooks:
     - id: zizmor
       files: '^.github/.*$'

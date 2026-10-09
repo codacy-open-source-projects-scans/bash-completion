@@ -1,4 +1,4 @@
-# mussh(1) completion                                      -*- shell-script -*-
+# mussh(1) completion
 
 _comp_cmd_mussh()
 {
@@ -34,7 +34,7 @@ _comp_cmd_mussh()
             return
             ;;
         -p | -h)
-            [[ $cur == *@* ]] && _comp_complete_user_at_host "$@" || _comp_compgen_known_hosts -a -- "$cur"
+            [[ $cur == *@* ]] && _comp_complete_user_at_host "$@" || _comp_compgen_known_hosts -a
             return
             ;;
         -c)
@@ -48,5 +48,3 @@ _comp_cmd_mussh()
         _comp_compgen_help
 } &&
     complete -F _comp_cmd_mussh mussh
-
-# ex: filetype=sh

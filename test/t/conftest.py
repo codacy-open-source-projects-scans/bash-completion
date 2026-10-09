@@ -105,17 +105,13 @@ def part_full_group(
 
 
 @pytest.fixture(scope="class")
-def hosts(bash: pexpect.spawn) -> List[str]:
+def hosts_from_hostfile(bash: pexpect.spawn) -> List[str]:
     output = assert_bash_exec(bash, "compgen -A hostname", want_output=True)
-    return sorted(set(output.split() + _avahi_hosts(bash)))
+    return sorted(set(output.split()))
 
 
 @pytest.fixture(scope="class")
-def avahi_hosts(bash: pexpect.spawn) -> List[str]:
-    return _avahi_hosts(bash)
-
-
-def _avahi_hosts(bash: pexpect.spawn) -> List[str]:
+def hosts_from_avahi(bash: pexpect.spawn) -> List[str]:
     output = assert_bash_exec(
         bash,
         "! type avahi-browse &>/dev/null || "
@@ -186,6 +182,21 @@ def get_testdir():
     return os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 
+def _sendintr_and_expect_prompt(bash: pexpect.spawn) -> None:
+    """Send Ctrl+C and wait for the prompt, retrying once on timeout.
+
+    A lone retry absorbs a transient scheduling/host-load stall without
+    masking a genuinely broken session: if the second attempt also times
+    out, the TIMEOUT still propagates as before.
+    """
+    bash.sendintr()
+    try:
+        bash.expect_exact(PS1)
+    except pexpect.exceptions.TIMEOUT:
+        bash.sendintr()
+        bash.expect_exact(PS1)
+
+
 @pytest.fixture(scope="session")
 def test_session_tmpdir(tmp_path_factory) -> Path:
     tmpdir = tmp_path_factory.mktemp("bash-completion.session.")
@@ -206,6 +217,9 @@ def test_session_tmpdir(tmp_path_factory) -> Path:
     helpers_2 = user_dir_2 / "helpers-core"
     helpers_1.symlink_to(bash_completion_root / "helpers-core")
     helpers_2.symlink_to(bash_completion_root / "helpers-core")
+
+    compat_dir = tmpdir / "bash_completion.d"
+    compat_dir.mkdir()
 
     # Create an empty temporary file for HISTFILE.
     #
@@ -350,8 +364,7 @@ def bash(request, test_session_tmpdir, tmp_path_factory) -> pexpect.spawn:
             # Not exactly sure why, but some errors leave bash in state where
             # getting the env here would fail and trash our test output. So
             # reset to a good state first (Ctrl+C, expect prompt).
-            bash.sendintr()
-            bash.expect_exact(PS1)
+            _sendintr_and_expect_prompt(bash)
             diff_env(
                 before_env,
                 get_env(bash),
@@ -495,8 +508,7 @@ class bash_env_saved:
 
     def _safe_sendintr(self):
         try:
-            self.bash.sendintr()
-            self.bash.expect_exact(PS1)
+            _sendintr_and_expect_prompt(self.bash)
         except Exception as e:
             if self.noexcept:
                 self.captured_error = e

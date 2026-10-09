@@ -1,4 +1,4 @@
-# ccze(1) completion                                       -*- shell-script -*-
+# ccze(1) completion
 
 _comp_cmd_ccze()
 {
@@ -29,8 +29,8 @@ _comp_cmd_ccze()
             return
             ;;
         --plugin | -${noargopts}p)
-            _comp_compgen_split -- "$("$1" --list-plugins | command \
-                sed -ne 's/^\([a-z0-9]\{1,\}\)[[:space:]]\{1,\}|.*/\1/p')"
+            _comp_compgen_split -- "$("$1" --list-plugins |
+                command sed -ne 's/^\([a-z0-9]\{1,\}\)[[:space:]]\{1,\}|.*/\1/p')"
             return
             ;;
     esac
@@ -41,5 +41,3 @@ _comp_cmd_ccze()
     [[ ${COMPREPLY-} == *= ]] && compopt -o nospace
 } &&
     complete -F _comp_cmd_ccze ccze
-
-# ex: filetype=sh

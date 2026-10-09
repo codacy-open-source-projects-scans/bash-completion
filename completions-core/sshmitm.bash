@@ -1,4 +1,4 @@
-# sshmitm completion                                       -*- shell-script -*-
+# sshmitm completion
 
 _comp_cmd_sshmitm()
 {
@@ -8,10 +8,8 @@ _comp_cmd_sshmitm()
     if [[ $cur == -* ]]; then
         _comp_compgen_usage
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 
 } &&
     complete -F _comp_cmd_sshmitm sshmitm
-
-# ex: filetype=sh

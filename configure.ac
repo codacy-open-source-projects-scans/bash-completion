@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([bash-completion], [2.17.0]) dnl x-release-please-version
+AC_INIT([bash-completion], [2.18.0]) dnl x-release-please-version
 dnl tar-pax for portable UTF-8 handling
 AM_INIT_AUTOMAKE([
     foreign dist-xz no-dist-gzip tar-pax -Wall -Wno-portability -Werror
@@ -40,6 +40,8 @@ completions-fallback/Makefile
 doc/Makefile
 helpers/Makefile
 helpers-core/Makefile
+startup/Makefile
+startup-core/Makefile
 test/Makefile
 test/t/Makefile
 test/t/unit/Makefile

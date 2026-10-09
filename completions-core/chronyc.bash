@@ -1,4 +1,4 @@
-# chronyc(1) completion                                    -*- shell-script -*-
+# chronyc(1) completion
 
 _comp_cmd_chronyc__command_args()
 {
@@ -6,7 +6,7 @@ _comp_cmd_chronyc__command_args()
     _comp_split args "$("$1" help 2>/dev/null |
         _comp_awk '/^'"$prev"'[ \t][^ []/ { gsub("\\|", " ", $2); print $2 }')"
     case $args in
-        \<address\>) _comp_compgen_known_hosts -- "$cur" ;;
+        \<address\>) _comp_compgen_known_hosts ;;
         \<*) ;;
         *) ((${#args[@]})) &&
             _comp_compgen -a -- -W '"${args[@]}"' ;;
@@ -23,7 +23,7 @@ _comp_cmd_chronyc()
             return
             ;;
         -*h)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -53,10 +53,8 @@ _comp_cmd_chronyc()
             fi
             ;;
         2)
-            [[ $prev == @(peer|server) ]] && _comp_compgen_known_hosts -- "$cur"
+            [[ $prev == @(peer|server) ]] && _comp_compgen_known_hosts
             ;;
     esac
 } &&
     complete -F _comp_cmd_chronyc chronyc
-
-# ex: filetype=sh

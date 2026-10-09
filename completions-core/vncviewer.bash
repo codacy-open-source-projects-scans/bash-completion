@@ -1,4 +1,4 @@
-# bash completion for vncviewer                            -*- shell-script -*-
+# bash completion for vncviewer
 
 _comp_cmd_vncviewer__bootstrap()
 {
@@ -32,7 +32,7 @@ _comp_cmd_tightvncviewer()
             return
             ;;
         -via)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -43,7 +43,7 @@ _comp_cmd_tightvncviewer()
             -truecolour -truecolor -depth -compresslevel -quality -nojpeg
             -nocursorshape -x11cursor'
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 } &&
     complete -F _comp_cmd_tightvncviewer tightvncviewer
@@ -68,7 +68,7 @@ _comp_cmd_xvnc4viewer()
             return
             ;;
         -via)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
     esac
@@ -91,9 +91,7 @@ _comp_cmd_xvnc4viewer()
             done
         )"
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 } &&
     complete -F _comp_cmd_xvnc4viewer xvnc4viewer
-
-# ex: filetype=sh

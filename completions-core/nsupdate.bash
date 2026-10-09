@@ -1,4 +1,4 @@
-# bash completion for nsupdate(1)                          -*- shell-script -*-
+# bash completion for nsupdate(1)
 
 _comp_cmd_nsupdate()
 {
@@ -19,7 +19,7 @@ _comp_cmd_nsupdate()
             ;;
         -*y)
             if [[ $cur == h* ]]; then
-                _comp_comtpen -- -W "hmac-{md5,sha{1,224,256,384,512}}" -S :
+                _comp_compgen -- -W "hmac-{md5,sha{1,224,256,384,512}}" -S :
                 [[ ${COMPREPLY-} == *: ]] && compopt -o nospace
             fi
             return
@@ -34,5 +34,3 @@ _comp_cmd_nsupdate()
     _comp_compgen_filedir
 } &&
     complete -F _comp_cmd_nsupdate nsupdate
-
-# ex: filetype=sh

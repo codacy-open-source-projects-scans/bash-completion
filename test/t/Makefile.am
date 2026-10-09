@@ -119,6 +119,7 @@ EXTRA_DIST = \
 	test_cryptsetup.py \
 	test_csplit.py \
 	test_curl.py \
+	test_curlie.py \
 	test_cut.py \
 	test_cvs.py \
 	test_cvsps.py \
@@ -139,6 +140,7 @@ EXTRA_DIST = \
 	test_dmypy.py \
 	test_dnssec_keygen.py \
 	test_dnsspoof.py \
+	test_doas.py \
 	test_dot.py \
 	test_dpkg.py \
 	test_dpkg_deb.py \

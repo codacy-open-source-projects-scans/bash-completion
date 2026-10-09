@@ -1,4 +1,4 @@
-# bash completion for xgamma(1)                            -*- shell-script -*-
+# bash completion for xgamma(1)
 
 _comp_cmd_xgamma()
 {
@@ -36,7 +36,7 @@ _comp_cmd_xgamma()
                 _comp_compgen -P "${cur%.*}." -- -W '$screens'
             elif [[ $cur != *:* ]]; then
                 # complete hostnames
-                _comp_compgen_known_hosts -c -- "$cur"
+                _comp_compgen_known_hosts -c
                 if [[ ! $cur ]]; then
                     COMPREPLY+=(:)
                 fi
@@ -56,5 +56,3 @@ _comp_cmd_xgamma()
     fi
 } &&
     complete -F _comp_cmd_xgamma xgamma
-
-# ex: filetype=sh

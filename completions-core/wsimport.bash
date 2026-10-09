@@ -1,4 +1,4 @@
-# wsimport(1) completion                                   -*- shell-script -*-
+# wsimport(1) completion
 
 _comp_cmd_wsimport()
 {
@@ -32,7 +32,7 @@ _comp_cmd_wsimport()
     esac
 
     if [[ $cur == -httpproxy:* ]]; then
-        _comp_compgen_known_hosts -- "${cur#-httpproxy:}"
+        _comp_compgen -c "${cur#-httpproxy:}" known_hosts
         return
     elif [[ $cur == -* ]]; then
         _comp_compgen_help -- -help
@@ -44,5 +44,3 @@ _comp_cmd_wsimport()
     _comp_compgen_filedir wsdl
 } &&
     complete -F _comp_cmd_wsimport wsimport
-
-# ex: filetype=sh

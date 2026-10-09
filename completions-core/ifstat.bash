@@ -1,4 +1,4 @@
-# bash completion for ifstat(1)                            -*- shell-script -*-
+# bash completion for ifstat(1)
 
 _comp_cmd_ifstat()
 {
@@ -35,7 +35,7 @@ _comp_cmd_ifstat()
                 "$1" --help 2>&1 || :
             } |
                 command grep -q -- '-s.*--noupdate'; then
-                _comp_compgen_known_hosts -- "$cur"
+                _comp_compgen_known_hosts
                 return
             fi
             ;;
@@ -64,5 +64,3 @@ _comp_cmd_ifstat()
     fi
 } &&
     complete -F _comp_cmd_ifstat ifstat
-
-# ex: filetype=sh

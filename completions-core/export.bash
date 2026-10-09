@@ -1,4 +1,4 @@
-# bash export completion                                   -*- shell-script -*-
+# bash export completion
 
 _comp_cmd_export()
 {
@@ -45,20 +45,21 @@ _comp_cmd_export()
             _comp_compgen -c "${cur#*=}" filedir
             ;;
         *)
-            if [[ $cword -eq 1 && $cur == -* ]]; then
+            # Only when all the previous arguments are valid options, $i
+            # reaches $cword.
+            if [[ $i -eq $cword && $cur == -* ]]; then
                 _comp_compgen_usage -c help -s "$1"
                 _comp_compgen -a -- -W '-p'
                 return
             fi
-            local suffix=""
+            _comp_compgen -- -A "$action"
             if [[ ! $remove && $action != function ]]; then
-                suffix="="
                 compopt -o nospace
+                if ((${#COMPREPLY[@]} == 1)) && [[ ${COMPREPLY[0]} == "$cur" ]]; then
+                    COMPREPLY[0]+="="
+                fi
             fi
-            _comp_compgen -- -A $action -S "$suffix"
             ;;
     esac
 } &&
     complete -F _comp_cmd_export export
-
-# ex: filetype=sh

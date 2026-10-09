@@ -1,4 +1,4 @@
-# freeciv client completions                               -*- shell-script -*-
+# freeciv client completions
 
 _comp_cmd_freeciv()
 {
@@ -22,7 +22,7 @@ _comp_cmd_freeciv()
             return
             ;;
         --Meta | --server | -[Ms])
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         --Plugin | -P)
@@ -37,5 +37,3 @@ _comp_cmd_freeciv()
 
 } &&
     complete -F _comp_cmd_freeciv freeciv{,-{gtk{2,3},sdl,xaw}} civclient
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# sshfs(1) completion                                      -*- shell-script -*-
+# sshfs(1) completion
 
 _comp_cmd_sshfs()
 {
@@ -15,10 +15,8 @@ _comp_cmd_sshfs()
         return
     fi
 
-    [[ $cur == @(*/|[.~])* ]] || _comp_compgen_known_hosts -c -a -- "$cur"
+    [[ $cur == @(*/|[.~])* ]] || _comp_compgen_known_hosts -c -a
 
     _comp_compgen -ax scp local_files -d
 } &&
     complete -F _comp_cmd_sshfs -o nospace sshfs
-
-# ex: filetype=sh

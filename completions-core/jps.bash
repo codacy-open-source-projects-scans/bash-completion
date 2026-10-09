@@ -1,4 +1,4 @@
-# jps(1) completion                                        -*- shell-script -*-
+# jps(1) completion
 
 _comp_cmd_jps()
 {
@@ -17,9 +17,7 @@ _comp_cmd_jps()
         _comp_compgen -- -W "-q -m -l -v -V -J -help"
         [[ ${COMPREPLY-} == -J* ]] && compopt -o nospace
     else
-        _comp_compgen_known_hosts -- "$cur"
+        _comp_compgen_known_hosts
     fi
 } &&
     complete -F _comp_cmd_jps jps
-
-# ex: filetype=sh

@@ -1,4 +1,4 @@
-# Slackware Linux upgradepkg completion                    -*- shell-script -*-
+# Slackware Linux upgradepkg completion
 
 _comp_cmd_upgradepkg()
 {
@@ -11,16 +11,11 @@ _comp_cmd_upgradepkg()
     fi
 
     if [[ $cur =~ ^[^%]+% ]]; then
-        local prefix=$BASH_REMATCH nofiles=""
-        compopt -o filenames
-        _comp_compgen -P "$prefix" -- -f -X "!*.t[bgxl]z" || nofiles=set
-        _comp_compgen -aP "$prefix" -- -S '/' -d
-        [[ $nofiles ]] && compopt -o nospace
+        local prefix=$BASH_REMATCH
+        _comp_compgen -P "$prefix" filedir 't[bgxl]z'
         return
     fi
 
     _comp_compgen_filedir 't[bglx]z'
 } &&
     complete -F _comp_cmd_upgradepkg upgradepkg
-
-# ex: filetype=sh

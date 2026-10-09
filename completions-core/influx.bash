@@ -1,4 +1,4 @@
-# bash completion for influx(8)                            -*- shell-script -*-
+# bash completion for influx(8)
 
 _comp_cmd_influx()
 {
@@ -10,7 +10,7 @@ _comp_cmd_influx()
             return
             ;;
         -host)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -format | -precision | -consistency)
@@ -28,5 +28,3 @@ _comp_cmd_influx()
         _comp_compgen_help
 } &&
     complete -F _comp_cmd_influx influx
-
-# ex: filetype=sh

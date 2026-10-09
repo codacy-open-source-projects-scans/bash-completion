@@ -1,4 +1,4 @@
-# ssh-keyscan(1) completion                                -*- shell-script -*-
+# ssh-keyscan(1) completion
 
 _comp_cmd_ssh_keyscan()
 {
@@ -46,8 +46,6 @@ _comp_cmd_ssh_keyscan()
         return
     fi
 
-    _comp_compgen_known_hosts ${ipvx-} -- "$cur"
+    _comp_compgen_known_hosts ${ipvx-}
 } &&
     complete -F _comp_cmd_ssh_keyscan ssh-keyscan
-
-# ex: filetype=sh

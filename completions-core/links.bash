@@ -1,4 +1,4 @@
-# bash completion for links                                -*- shell-script -*-
+# bash completion for links
 
 _comp_cmd_links()
 {
@@ -23,7 +23,7 @@ _comp_cmd_links()
             return
             ;;
         -lookup)
-            _comp_compgen_known_hosts -- "$cur"
+            _comp_compgen_known_hosts
             return
             ;;
         -driver)
@@ -96,5 +96,3 @@ _comp_cmd_links()
 
 } &&
     complete -F _comp_cmd_links links links2
-
-# ex: filetype=sh

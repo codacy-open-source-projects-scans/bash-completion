@@ -1,4 +1,4 @@
-# arping(8) completion                                     -*- shell-script -*-
+# arping(8) completion
 
 _comp_cmd_arping()
 {
@@ -24,8 +24,6 @@ _comp_cmd_arping()
         return
     fi
 
-    _comp_compgen_known_hosts -- "$cur"
+    _comp_compgen_known_hosts
 } &&
     complete -F _comp_cmd_arping arping
-
-# ex: filetype=sh
